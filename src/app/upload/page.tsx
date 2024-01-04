@@ -95,13 +95,15 @@ type DocumentDropzoneProps = {
   [key: string]: unknown;
 };
 
-const Upload = ({
-  className,
-  onDrop,
-  disabled,
-  type = 'document',
-  ...props
-}: DocumentDropzoneProps) => {
+export default function Upload() {
+  const disabled = false;
+  const className = '';
+  const props = null;
+  const onDrop = (acceptedFile: any) => {
+    //
+    console.log('acceptedFile', acceptedFile);
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'application/pdf': ['.pdf'],
@@ -140,7 +142,7 @@ const Upload = ({
             degrees={120}
             aria-disabled={disabled}
             {...getRootProps()}
-            {...props}
+            // {...props}
           >
             <CardContent className="text-muted-foreground/40 flex flex-col items-center justify-center p-6">
               {/* <FilePlus strokeWidth="1px" className="h-16 w-16" /> */}
@@ -185,7 +187,7 @@ const Upload = ({
               <input {...getInputProps()} />
 
               <p className="group-hover:text-foreground text-muted-foreground mt-8 font-medium">
-                {DocumentDescription[type].headline}
+                Select a file
               </p>
 
               <p className="text-muted-foreground/80 mt-1 text-sm">
@@ -201,6 +203,4 @@ const Upload = ({
       </div>
     </MaxWidthWrapper>
   );
-};
-
-export default Upload;
+}
