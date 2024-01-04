@@ -87,7 +87,7 @@ function megabytesToBytes(megabytes: number) {
   return megabytes * 1000000;
 }
 
-export type DocumentDropzoneProps = {
+type DocumentDropzoneProps = {
   className?: string;
   disabled?: boolean;
   onDrop?: (_file: File) => void | Promise<void>;
