@@ -27,13 +27,16 @@ export function DashboardNav({ items }: DashboardNavProps) {
 
   return (
     <nav className="grid items-start gap-2">
-      <Accordion type="multiple">
+      <Accordion
+        type="multiple"
+        defaultValue={items.map((item: any) => item.key)}
+      >
         {items.map(({ heading, key, Icon, links }: any) => {
           // const Icon = Icons[item.icon || 'arrowRight'];
           return (
-            <AccordionItem key={key} value={key} defaultValue={key}>
+            <AccordionItem key={key} value={key}>
               <AccordionTrigger className="px-6">
-                <div className="flex items-center gap-3 overflow-hidden">
+                <div className="flex items-center gap-3 overflow-hidden text-muted-foreground">
                   <Icon className="h-5 w-5" />
                   <span className="text-base uppercase font-medium truncate text-ellipsis">
                     {heading}

@@ -9,7 +9,7 @@ import { Layers3 } from 'lucide-react';
 // import { UserAccountNav } from '@/components/user-account-nav';
 
 const styles = {
-  container: `flex flex-col min-h-[calc(100dvh)] space-y-6`,
+  container: `flex flex-col min-h-[calc(100dvh)]`,
   childrenContainer: `mt-[70px] relative flex-grow`,
 };
 
@@ -41,6 +41,9 @@ export default async function DashboardLayout({
           />
         </div>
       </header> */}
+      <header className="sticky top-0 z-40 h-16 border-b bg-background">
+        <div className="text-2xl font-bold px-6 py-4">CreateBase</div>
+      </header>
 
       {/* Bottom Nav */}
       <div className="grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
