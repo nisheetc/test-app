@@ -9,6 +9,8 @@ import { cn } from '@/utils';
 import { Card, CardContent } from '@/components/Card';
 import { MaxWidthWrapper } from '@/components';
 
+import { toast } from 'sonner';
+
 const DocumentDropzoneContainerVariants: Variants = {
   initial: {
     scale: 1,
@@ -118,6 +120,10 @@ export default function Upload() {
     maxSize: megabytesToBytes(50),
   });
 
+  const handleClick = () => {
+    toast('Calculating originality score...');
+  };
+
   return (
     <MaxWidthWrapper className="flex flex-col items-center justify-center grow pt-20 gap-8">
       <div className="flex flex-col items-center gap-6 bg-muted/40 border-[1px] border-white/10 w-full max-w-xl px-6 py-8 rounded-2xl">
@@ -197,7 +203,10 @@ export default function Upload() {
           </Card>
         </motion.div>
 
-        <button className="px-6 py-2 bg-foreground text-background font-bold rounded-lg hover:opacity-60 ease-out duration-300 transition-opacity">
+        <button
+          onClick={handleClick}
+          className="px-6 py-2 bg-foreground text-background font-bold rounded-lg hover:opacity-60 ease-out duration-300 transition-opacity"
+        >
           Get Originality Score
         </button>
       </div>

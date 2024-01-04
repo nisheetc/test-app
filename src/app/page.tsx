@@ -1,5 +1,40 @@
 import Image from 'next/image';
 
+const sidebar = [
+  {
+    label: 'Contributors',
+    children: ['Artists', 'Record Labels', 'Songwriters', 'Music Publishers'],
+  },
+  {
+    label: 'Properties',
+    children: ['', ''],
+  },
+  {
+    label: 'Audio Manager',
+    children: ['Tracks', 'Albums'],
+  },
+  {
+    label: 'Release Manager',
+    children: ['', ''],
+  },
+  {
+    label: 'Playlists for business',
+    children: ['', ''],
+  },
+  {
+    label: 'CRM',
+    children: ['Contacts', 'Companies'],
+  },
+  {
+    label: 'Rights Manager',
+    children: ['Contacts'],
+  },
+  {
+    label: '',
+    children: [],
+  },
+];
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white">

@@ -3,12 +3,9 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/utils';
 
-const inter = Inter({ subsets: ['latin'] });
+import { Toaster } from '@/components/ui/sonner';
 
-const styles = {
-  container: `flex flex-col min-h-[calc(100dvh)]`,
-  childrenContainer: `mt-[70px] relative flex-grow`,
-};
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, 'dark')}>
-        <div className={styles.container}>
-          <main className={styles.childrenContainer}>{children}</main>
-        </div>
+        {children} <Toaster />
       </body>
     </html>
   );
