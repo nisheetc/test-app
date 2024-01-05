@@ -47,8 +47,8 @@ export const dashboardConfig: DashboardConfig = {
 
 export const sectionWithHeaders = [
   {
-    heading: 'Contributors',
-    key: 'contributors',
+    heading: 'Overview',
+    key: 'overview',
     Icon: UsersRound,
     links: [
       {
