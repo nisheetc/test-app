@@ -37,8 +37,8 @@ export function DashboardNav({ items }: DashboardNavProps) {
             <AccordionItem key={key} value={key}>
               <AccordionTrigger className="px-6">
                 <div className="flex items-center gap-3 overflow-hidden text-muted-foreground">
-                  <Icon className="h-5 w-5" />
-                  <span className="text-base uppercase font-medium truncate text-ellipsis">
+                  <Icon className="h-4 w-4" />
+                  <span className="text-base capitalize font-semibold truncate text-ellipsis">
                     {heading}
                   </span>
                 </div>
@@ -52,7 +52,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
                           href={item.href}
                           className="group flex items-center justify-between pl-14 pr-7 py-1.5 cursor-pointer"
                         >
-                          <span className="text-base tracking-normal group-hover:opacity-60 duration-300 transition-opacity ease-out">
+                          <span className="tracking-normal group-hover:opacity-60 duration-300 transition-opacity ease-out">
                             {item.label}
                           </span>
                           <span className="text-muted">0</span>
