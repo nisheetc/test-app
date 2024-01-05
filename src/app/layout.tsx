@@ -4,6 +4,7 @@ import './globals.css';
 import { cn } from '@/utils';
 
 import { Toaster } from '@/components/ui/sonner';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,8 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'dark')}>
-        {children} <Toaster />
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          // disableTransitionOnChange
+        >
+          {children} <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -52,24 +52,28 @@ export const sectionWithHeaders = [
     Icon: UsersRound,
     links: [
       {
-        label: 'Artists',
+        title: 'Artists',
         href: '/artists',
         key: 'artists',
+        disabled: true,
       },
       {
-        label: 'Record Labels',
-        href: '/record-labels',
-        key: 'record-labels',
+        title: 'Record titles',
+        href: '/record-titles',
+        key: 'record-titles',
+        disabled: true,
       },
       {
-        label: 'Songwriters',
+        title: 'Songwriters',
         href: '/songwriters',
         key: 'song-writers',
+        disabled: true,
       },
       {
-        label: 'Music Publishers',
+        title: 'Music Publishers',
         href: '/music-publishers',
         key: 'music-publishers',
+        disabled: true,
       },
     ],
   },
@@ -79,14 +83,16 @@ export const sectionWithHeaders = [
     Icon: Tags,
     links: [
       {
-        label: 'Property 1',
+        title: 'Property 1',
         href: '/property-1',
         key: 'property-1',
+        disabled: true,
       },
       {
-        label: 'Property 2',
+        title: 'Property 2',
         href: '/property-2',
         key: 'property-2',
+        disabled: true,
       },
     ],
   },
@@ -96,14 +102,17 @@ export const sectionWithHeaders = [
     Icon: Headphones,
     links: [
       {
-        label: 'Tracks',
-        href: '/tracks',
+        title: 'Tracks',
+        href: '/dashboard/tracks',
         key: 'tracks',
+        disabled: false,
+        label: 'New',
       },
       {
-        label: 'Albums',
-        href: '/albums',
+        title: 'Albums',
+        href: '/dashboard/albums',
         key: 'albums',
+        disabled: false,
       },
     ],
   },
@@ -113,9 +122,10 @@ export const sectionWithHeaders = [
     Icon: Music,
     links: [
       {
-        label: 'Works',
+        title: 'Works',
         href: '/works',
         key: 'works',
+        disabled: true,
       },
     ],
   },
@@ -125,14 +135,16 @@ export const sectionWithHeaders = [
     Icon: Truck,
     links: [
       {
-        label: 'Release 1',
+        title: 'Release 1',
         href: '/release-1',
         key: 'release-1',
+        disabled: true,
       },
       {
-        label: 'Release 2',
+        title: 'Release 2',
         href: '/release-2',
         key: 'release-2',
+        disabled: true,
       },
     ],
   },
@@ -142,14 +154,16 @@ export const sectionWithHeaders = [
     Icon: Send,
     links: [
       {
-        label: 'Playlist 1',
+        title: 'Playlist 1',
         href: '/playlist-1',
         key: 'playlist-1',
+        disabled: true,
       },
       {
-        label: 'Playlist 2',
+        title: 'Playlist 2',
         href: '/playlist-2',
         key: 'playlist-2',
+        disabled: true,
       },
     ],
   },
@@ -159,14 +173,16 @@ export const sectionWithHeaders = [
     Icon: BookUser,
     links: [
       {
-        label: 'Contacts',
+        title: 'Contacts',
         href: '/contacts',
         key: 'contacts',
+        disabled: true,
       },
       {
-        label: 'Companies',
+        title: 'Companies',
         href: '/companies',
         key: 'companies',
+        disabled: true,
       },
     ],
   },
@@ -176,9 +192,10 @@ export const sectionWithHeaders = [
     Icon: BookText,
     links: [
       {
-        label: 'Contacts',
+        title: 'Contacts',
         href: '/contacts',
         key: 'contacts',
+        disabled: true,
       },
     ],
   },
@@ -188,14 +205,16 @@ export const sectionWithHeaders = [
     Icon: Wrench,
     links: [
       {
-        label: 'Setting-1',
+        title: 'Setting-1',
         href: '/setting-1',
         key: 'setting-1',
+        disabled: true,
       },
       {
-        label: 'Setting-2',
+        title: 'Setting-2',
         href: '/setting-2',
         key: 'setting-2',
+        disabled: true,
       },
     ],
   },
