@@ -28,7 +28,6 @@ export function DashboardNav({ items }: DashboardNavProps) {
 
   return (
     <nav className="grid items-start gap-2">
-      {console.log('path', path)}
       <Accordion
         type="multiple"
         defaultValue={items.map((item: any) => item.key)}
