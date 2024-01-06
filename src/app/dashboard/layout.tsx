@@ -19,7 +19,7 @@ export default async function DashboardLayout({
     <div className={styles.container}>
       <SiteHeader />
 
-      <div className="flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
+      <div className="flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
         <aside className="fixed top-16 z-30 hidden h-[calc(100dvh-4rem)] w-full shrink-0 md:sticky md:block">
           <ScrollArea className="h-full border-r py-4">
             <DashboardNav items={sectionWithHeaders} />
