@@ -1,4 +1,13 @@
-'use client';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { z } from 'zod';
+
+import { columns } from './components/columns';
+import { DataTable } from './components/data-table';
+
+// import { tracks } from '@/config/tracks';
+
+import { trackSchema } from '@/config/schema';
 
 import Image from 'next/image';
 
@@ -56,7 +65,7 @@ import {
 import Upload from '@/components/upload';
 import ScoreLoader from '@/components/score-loader';
 import { cn } from '@/utils';
-import { useState } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Drawer,
@@ -87,6 +96,8 @@ import {
   LineChart,
   Tooltip as LineTooltip,
   Line,
+  PieChart,
+  Pie,
 } from 'recharts';
 
 const analysisPhrases = [
@@ -109,79 +120,124 @@ const analysisPhrases = [
   'Completed',
 ];
 
-const data = [
-  { subject: 'Melodic Innovation', A: 80 },
-  { subject: 'Harmonic Complexity', A: 70 },
-  { subject: 'Rhythmic Originality', A: 60 },
-  { subject: 'Instrumental Arrangement', A: 75 },
-  { subject: 'Lyrical Originality', A: 85 },
-  { subject: 'Production Techniques', A: 90 },
-  { subject: 'Structural Innovation', A: 65 },
-  { subject: 'Genre Fusion', A: 80 },
-];
+// const data = [
+//   { subject: 'Melodic Innovation', A: 80 },
+//   { subject: 'Harmonic Complexity', A: 70 },
+//   { subject: 'Rhythmic Originality', A: 60 },
+//   { subject: 'Instrumental Arrangement', A: 75 },
+//   { subject: 'Lyrical Originality', A: 85 },
+//   { subject: 'Production Techniques', A: 90 },
+//   { subject: 'Structural Innovation', A: 65 },
+//   { subject: 'Genre Fusion', A: 80 },
+// ];
 
-const similarityData = [
-  { name: 'Rhythm & Beat Similarity', value: 70 },
-  { name: 'Melodic Similarity', value: 60 },
-  { name: 'Harmonic Similarities', value: 80 },
-  { name: 'Vocal Style and Delivery', value: 50 },
-  { name: 'Lyrical Themes', value: 65 },
-  { name: 'Instrumentation', value: 75 },
-  { name: 'Production Style', value: 55 },
-  { name: 'Ambience and Mood', value: 85 },
-];
+// const similarityData = [
+//   { name: 'Rhythm & Beat Similarity', value: 70 },
+//   { name: 'Melodic Similarity', value: 60 },
+//   { name: 'Harmonic Similarities', value: 80 },
+//   { name: 'Vocal Style and Delivery', value: 50 },
+//   { name: 'Lyrical Themes', value: 65 },
+//   { name: 'Instrumentation', value: 75 },
+//   { name: 'Production Style', value: 55 },
+//   { name: 'Ambience and Mood', value: 85 },
+// ];
 
-const colors = [
-  '#ff4d4f',
-  '#ff7a45',
-  '#ffa940',
-  '#ffc53d',
-  '#ffec3d',
-  '#bae637',
-  '#73d13d',
-  '#36cfc9',
-  '#40a9ff',
-  '#597ef7',
-  '#9254de',
-  '#f759ab',
-];
+// const colors = [
+//   '#ff4d4f',
+//   '#ff7a45',
+//   '#ffa940',
+//   '#ffc53d',
+//   '#ffec3d',
+//   '#bae637',
+//   '#73d13d',
+//   '#36cfc9',
+//   '#40a9ff',
+//   '#597ef7',
+//   '#9254de',
+//   '#f759ab',
+// ];
 
-const valuationData = [
-  { time: 'Jan', value: 200 },
-  { time: 'Feb', value: 210 },
-  { time: 'Mar', value: 220 },
-  { time: 'Apr', value: 230 },
-  { time: 'May', value: 240 },
-  { time: 'Jun', value: 250 },
-  // ... add more data points as needed
-];
+// const valuationData = [
+//   { time: 'Jan', value: 200 },
+//   { time: 'Feb', value: 210 },
+//   { time: 'Mar', value: 220 },
+//   { time: 'Apr', value: 230 },
+//   { time: 'May', value: 240 },
+//   { time: 'Jun', value: 250 },
+//   // ... add more data points as needed
+// ];
 
-export default function Tracks() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+// const ScorePieChart: React.FC<{ score: number }> = ({ score }) => {
+//   const data = [
+//     { name: 'Score', value: score },
+//     { name: 'Remaining', value: 100 - score },
+//   ];
 
-  const handleFormSubmit = async (e: any) => {
-    e.preventDefault();
-    await simulateProcessing();
-  };
+//   const COLORS = ['#8884d8', '#e0e0e0']; // Color for the score and the remaining part
 
-  const simulateProcessing = async () => {
-    setIsSubmitting(true);
+//   return (
+//     <ResponsiveContainer width="100%" height={250}>
+//       <PieChart>
+//         <Pie
+//           data={data}
+//           innerRadius={60}
+//           outerRadius={80}
+//           fill="#8884d8"
+//           paddingAngle={5}
+//           dataKey="value"
+//         >
+//           {data.map((entry, index) => (
+//             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+//           ))}
+//         </Pie>
+//       </PieChart>
+//     </ResponsiveContainer>
+//   );
+// };
 
-    // Simulate a task taking 16 seconds
-    await new Promise((resolve) => setTimeout(resolve, 17000));
+// async function getTasks() {
+//   const data = await fs.readFile(
+//     path.join(process.cwd(), 'src/config/tasks.json')
+//   );
 
-    setIsSubmitting(false);
-    setIsDialogOpen(false); // This will close the dialog
-    setIsDrawerOpen(true); // Open the drawer
-  };
+//   const tasks = JSON.parse(data.toString());
 
-  const [goal, setGoal] = useState(350);
+//   return z.array(taskSchema).parse(tasks);
+// }
 
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  }
+async function getTracks() {
+  const trackData = await fs.readFile(
+    path.join(process.cwd(), 'src/config/tracks.json')
+  );
+
+  const tracks = JSON.parse(trackData.toString());
+
+  return z.array(trackSchema).parse(tracks);
+}
+
+export default async function Tracks() {
+  const tracks = await getTracks();
+  // const tracks = await getTracks();
+
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // const handleFormSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   await simulateProcessing();
+  // };
+
+  // const simulateProcessing = async () => {
+  //   setIsSubmitting(true);
+
+  //   // Simulate a task taking 16 seconds
+  //   await new Promise((resolve) => setTimeout(resolve, 17000));
+
+  //   setIsSubmitting(false);
+  //   setIsDialogOpen(false); // This will close the dialog
+  //   setIsDrawerOpen(true); // Open the drawer
+  // };
 
   return (
     <div className="flex flex-col grow">
@@ -189,9 +245,9 @@ export default function Tracks() {
         <Music2 className="h-5 w-5" /> <span>List of Tracks</span>
       </div>
 
-      <div className="flex flex-col gap-4 px-6 py-4">
+      <div className="flex flex-col gap-4 px-6 pt-2 pb-16">
         <div className="flex justify-between">
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <span className="font-medium text-sm">{tracks.length} tracks</span>
 
             <Select>
@@ -204,18 +260,9 @@ export default function Tracks() {
                 <SelectItem value="system">Action 3</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
 
           {/* <Dialog>
-            <DialogTrigger asChild>
-              <Button>New Track</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <Upload />
-            </DialogContent>
-          </Dialog> */}
-
-          <Dialog>
             <DialogTrigger asChild>
               <Button onClick={() => setIsDialogOpen(true)}>New Track</Button>
             </DialogTrigger>
@@ -262,12 +309,10 @@ export default function Tracks() {
                 </>
               )}
             </DialogContent>
-          </Dialog>
+          </Dialog> */}
         </div>
 
-        <Input type="search" placeholder="Search" />
-
-        <Table>
+        {/* <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ART.</TableHead>
@@ -367,9 +412,9 @@ export default function Tracks() {
               </TooltipProvider>
             ))}
           </TableBody>
-        </Table>
+        </Table> */}
 
-        <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+        {/* <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
           <DrawerTrigger>End.</DrawerTrigger>
           <DrawerContent>
             <DrawerHeader>
@@ -445,8 +490,8 @@ export default function Tracks() {
                 </ResponsiveContainer>
               </div>
 
-              {/* <div>here</div> */}
-
+              <ScorePieChart score={45} />
+             
               <div className="p-4 w-full">
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart
@@ -472,154 +517,10 @@ export default function Tracks() {
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>
-        </Drawer>
+        </Drawer> */}
+
+        <DataTable data={tracks} columns={columns} />
       </div>
     </div>
   );
 }
-
-const tracks = [
-  {
-    imageUrl: 'https://i.imgur.com/MHwee14.jpg',
-    title: 'Bad Blood',
-    artist: 'Taylor Swift',
-    album: 'Deluxe',
-    duration: '3:31',
-    yearPublished: '1989',
-    valuation: 75,
-    originality: 8,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/MHwee14.jpg',
-    title: 'Love Me Enough (feat. Monica & Keyshia Cole)',
-    artist: 'Nicki Minaj, Monica, Keyshia Cole',
-    album: 'Pink Friday 2 (Gag City Deluxe)',
-    duration: '3:51',
-    yearPublished: '2023',
-    valuation: 80,
-    originality: 7,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/Gpvu8O3.jpg',
-    title: 'Grown Woman',
-    artist: 'Beyonce',
-    album: 'Grown Woman',
-    duration: '5:10',
-    yearPublished: '2013',
-    valuation: 80,
-    originality: 7,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/RvDsQIX.jpg',
-    title: 'Rise Up',
-    artist: 'Sum 41',
-    album: 'Rise Up',
-    duration: '3:16',
-    yearPublished: '2023',
-    valuation: 70,
-    originality: 6,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/uh1Vexs.jpg',
-    title: 'Not My Fault (with Megan Thee Stallion)',
-    artist: 'Renee Rapp, Megan Thee Stallion',
-    album: 'Not My Fault (with Megan Thee Stallion)',
-    duration: '2:50',
-    yearPublished: '2023',
-    valuation: 90,
-    originality: 9,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/DxnClQt.jpg',
-    title: 'Crazy',
-    artist: 'Lil Baby',
-    album: 'Crazy',
-    duration: '3:12',
-    yearPublished: '2023',
-    valuation: 85,
-    originality: 8,
-  },
-  {
-    imageUrl: 'https://i.imgur.com/DxnClQt.jpg',
-    title: 'Crazy',
-    artist: 'Lil Baby',
-    album: 'Crazy',
-    duration: '3:12',
-    yearPublished: '2023',
-    valuation: 85,
-    originality: 8,
-  },
-
-  /////
-
-  // {
-  //   title: 'Bat Out of Hell',
-  //   duration: '2:59',
-  //   artist: 'The Pharcyde',
-  //   valuation: 78,
-  //   originality: 7,
-  // },
-  // {
-  //   title: 'Legend',
-  //   duration: '3:31',
-  //   artist: 'The Pharcyde',
-  //   valuation: 82,
-  //   originality: 8,
-  // },
-  // {
-  //   title: 'Born in the U.S.A.',
-  //   duration: '0:52',
-  //   artist: 'The Pharcyde',
-  //   valuation: 88,
-  //   originality: 9,
-  // },
-  // {
-  //   title: 'Greatest Hits',
-  //   duration: '5:35',
-  //   artist: 'The Pharcyde',
-  //   valuation: 77,
-  //   originality: 6,
-  // },
-  // {
-  //   title: '21',
-  //   duration: '4:56',
-  //   artist: 'The Pharcyde',
-  //   valuation: 83,
-  //   originality: 7,
-  // },
-  // {
-  //   title: 'Purple Rain [Soundtrack]',
-  //   duration: '3:55',
-  //   artist: 'The Pharcyde',
-  //   valuation: 85,
-  //   originality: 9,
-  // },
-  // {
-  //   title: 'Slippery When Wet',
-  //   duration: '5:05',
-  //   artist: 'The Pharcyde',
-  //   valuation: 75,
-  //   originality: 7,
-  // },
-  // {
-  //   title: 'Appetite For Destruction',
-  //   duration: '0:42',
-  //   artist: 'The Pharcyde',
-  //   valuation: 80,
-  //   originality: 8,
-  // },
-  // {
-  //   title: 'The Joshua Tree',
-  //   duration: '2:44',
-  //   artist: 'The Pharcyde',
-  //   valuation: 90,
-  //   originality: 9,
-  // },
-  // {
-  //   title: 'Metallica',
-  //   duration: '5:35',
-  //   artist: 'The Pharcyde',
-  //   valuation: 92,
-  //   originality: 9,
-  // },
-];

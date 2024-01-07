@@ -19,14 +19,18 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ModeToggle } from '@/components';
 import { CommandMenu } from '@/components/command-menu';
-import { LogoType } from './icons';
+import { Logo, LogoType } from './icons';
 import { NotificationsPopover } from './notifications-popover';
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center justify-between px-6">
-      <Link href="/dashboard">
-        <LogoType className="h-8" />
+      <Link href="/dashboard" className="flex items-center">
+        {/* <LogoType className="h-8" /> */}
+        <Logo className="h-16" />
+        <span className="text-2xl font-semibold tracking-wider">
+          CreateBase
+        </span>
       </Link>
 
       <div className="flex flex-1 items-center justify-between space-x-3 md:justify-end">

@@ -2,10 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import { SidebarNavItem } from '@/types';
 import { cn } from '@/utils';
-// import { Icons } from '@/components/icons';
 
 import {
   Accordion,
@@ -13,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
 
 interface DashboardNavProps {
   items: any; //update types
