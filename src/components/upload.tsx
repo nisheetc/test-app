@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import type { Variants } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { Music4, Video, ImageIcon } from 'lucide-react';
@@ -102,12 +103,14 @@ interface UploadProps {
 }
 
 const Upload: React.FC<UploadProps> = ({ onSubmit }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const disabled = false;
   const className = '';
   const props = null;
   const onDrop = (acceptedFile: any) => {
     //
     console.log('acceptedFile', acceptedFile);
+    setSelectedFile(acceptedFile);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -197,9 +200,15 @@ const Upload: React.FC<UploadProps> = ({ onSubmit }) => {
 
             <input required {...getInputProps()} />
 
-            <p className="group-hover:text-foreground text-muted-foreground mt-8 font-medium">
-              Select a file
-            </p>
+            {selectedFile ? (
+              <p className="group-hover:text-foreground text-muted-foreground mt-8 font-medium">
+                {selectedFile.name} (File Selected)
+              </p>
+            ) : (
+              <p className="group-hover:text-foreground text-muted-foreground mt-8 font-medium">
+                Select a file
+              </p>
+            )}
 
             <p className="text-muted-foreground/80 mt-1 text-sm">
               Drag & drop your file here.

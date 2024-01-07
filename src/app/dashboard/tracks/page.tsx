@@ -58,6 +58,36 @@ import ScoreLoader from '@/components/score-loader';
 import { cn } from '@/utils';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { MinusIcon, PlusIcon } from '@radix-ui/react-icons';
+
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip as ChartTooltip,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  LineChart,
+  Tooltip as LineTooltip,
+  Line,
+} from 'recharts';
 
 const analysisPhrases = [
   'Analyzing Melodic Patterns',
@@ -79,9 +109,57 @@ const analysisPhrases = [
   'Completed',
 ];
 
+const data = [
+  { subject: 'Melodic Innovation', A: 80 },
+  { subject: 'Harmonic Complexity', A: 70 },
+  { subject: 'Rhythmic Originality', A: 60 },
+  { subject: 'Instrumental Arrangement', A: 75 },
+  { subject: 'Lyrical Originality', A: 85 },
+  { subject: 'Production Techniques', A: 90 },
+  { subject: 'Structural Innovation', A: 65 },
+  { subject: 'Genre Fusion', A: 80 },
+];
+
+const similarityData = [
+  { name: 'Rhythm & Beat Similarity', value: 70 },
+  { name: 'Melodic Similarity', value: 60 },
+  { name: 'Harmonic Similarities', value: 80 },
+  { name: 'Vocal Style and Delivery', value: 50 },
+  { name: 'Lyrical Themes', value: 65 },
+  { name: 'Instrumentation', value: 75 },
+  { name: 'Production Style', value: 55 },
+  { name: 'Ambience and Mood', value: 85 },
+];
+
+const colors = [
+  '#ff4d4f',
+  '#ff7a45',
+  '#ffa940',
+  '#ffc53d',
+  '#ffec3d',
+  '#bae637',
+  '#73d13d',
+  '#36cfc9',
+  '#40a9ff',
+  '#597ef7',
+  '#9254de',
+  '#f759ab',
+];
+
+const valuationData = [
+  { time: 'Jan', value: 200 },
+  { time: 'Feb', value: 210 },
+  { time: 'Mar', value: 220 },
+  { time: 'Apr', value: 230 },
+  { time: 'May', value: 240 },
+  { time: 'Jun', value: 250 },
+  // ... add more data points as needed
+];
+
 export default function Tracks() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
@@ -96,7 +174,14 @@ export default function Tracks() {
 
     setIsSubmitting(false);
     setIsDialogOpen(false); // This will close the dialog
+    setIsDrawerOpen(true); // Open the drawer
   };
+
+  const [goal, setGoal] = useState(350);
+
+  function onClick(adjustment: number) {
+    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
+  }
 
   return (
     <div className="flex flex-col grow">
@@ -283,6 +368,111 @@ export default function Tracks() {
             ))}
           </TableBody>
         </Table>
+
+        <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+          <DrawerTrigger>End.</DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle className="text-xl text-center">
+                Originality & Valuation Analytics
+              </DrawerTitle>
+            </DrawerHeader>
+
+            <div className="w-full grid grid-cols-3 justify-center items-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={600}
+                  height={300}
+                  data={similarityData}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <ChartTooltip />
+                  <Bar dataKey="value" barSize={20}>
+                    {similarityData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={colors[index % colors.length]}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+
+              <div className="p-4 pb-0 h-[600px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart
+                    cx={300}
+                    cy={250}
+                    outerRadius={150}
+                    width={500}
+                    height={500}
+                    data={data}
+                  >
+                    <defs>
+                      <linearGradient
+                        id="colorGradient"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop offset="0%" stopColor="#adfa1d" stopOpacity={1} />
+                        <stop
+                          offset="100%"
+                          stopColor="#adfa1d"
+                          stopOpacity={0}
+                        />
+                      </linearGradient>
+                    </defs>
+                    <PolarGrid opacity={0.8} />
+                    <PolarAngleAxis
+                      dataKey="subject"
+                      tick={{ fontSize: '14px', fill: 'currentColor' }}
+                    />
+                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                    <Radar
+                      name="Music"
+                      dataKey="A"
+                      // stroke="#8884d8"
+                      // strokeOpacity={0.5}
+                      fill="url(#colorGradient)"
+                      // fillOpacity={0.8}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* <div>here</div> */}
+
+              <div className="p-4 w-full">
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart
+                    data={valuationData}
+                    margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="time" />
+                    <YAxis />
+                    <LineTooltip />
+                    <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                  </LineChart>
+                </ResponsiveContainer>
+                <p className="text-center mt-2">Valuation Trend</p>
+              </div>
+            </div>
+
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button variant="outline" className="w-full">
+                  Close
+                </Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   );
