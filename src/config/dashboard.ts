@@ -58,47 +58,22 @@ export const sectionWithHeaders = [
         disabled: true,
       },
       {
-        title: 'Record titles',
-        href: '/record-titles',
-        key: 'record-titles',
-        disabled: true,
-      },
-      {
         title: 'Songwriters',
         href: '/songwriters',
-        key: 'song-writers',
+        key: 'songwriters',
         disabled: true,
       },
       {
-        title: 'Music Publishers',
-        href: '/music-publishers',
-        key: 'music-publishers',
+        title: 'Publishers',
+        href: '/publishers',
+        key: 'publishers',
         disabled: true,
       },
     ],
   },
   {
-    heading: 'Properties',
-    key: 'properties',
-    Icon: Tags,
-    links: [
-      {
-        title: 'Property 1',
-        href: '/property-1',
-        key: 'property-1',
-        disabled: true,
-      },
-      {
-        title: 'Property 2',
-        href: '/property-2',
-        key: 'property-2',
-        disabled: true,
-      },
-    ],
-  },
-  {
-    heading: 'Audio manager',
-    key: 'audio-manager',
+    heading: 'Portfolio manager',
+    key: 'portfolio-manager',
     Icon: Headphones,
     links: [
       {
@@ -114,55 +89,42 @@ export const sectionWithHeaders = [
         key: 'albums',
         disabled: false,
       },
+      {
+        title: 'Collections',
+        href: '/dashboard/collections',
+        key: 'collections',
+        disabled: true,
+      },
     ],
   },
   {
-    heading: 'Works manager',
+    heading: 'Analytics',
     key: 'works-manager',
     Icon: Music,
     links: [
       {
-        title: 'Works',
-        href: '/works',
-        key: 'works',
+        title: 'Hit Prediction',
+        href: '/hit-prediction',
+        key: 'hit-prediction',
         disabled: true,
+        label: 'New',
       },
-    ],
-  },
-  {
-    heading: 'Releases manager',
-    key: 'releases-manager',
-    Icon: Truck,
-    links: [
       {
-        title: 'Release 1',
-        href: '/release-1',
-        key: 'release-1',
+        title: 'Originality Score',
+        href: '/originality-score',
+        key: 'originality-score',
         disabled: true,
       },
       {
-        title: 'Release 2',
-        href: '/release-2',
-        key: 'release-2',
-        disabled: true,
-      },
-    ],
-  },
-  {
-    heading: 'Playlists for business',
-    key: 'playlists-for-business',
-    Icon: Send,
-    links: [
-      {
-        title: 'Playlist 1',
-        href: '/playlist-1',
-        key: 'playlist-1',
+        title: 'Valuation Estimate',
+        href: '/valuation-estimate',
+        key: 'valuation-estimate',
         disabled: true,
       },
       {
-        title: 'Playlist 2',
-        href: '/playlist-2',
-        key: 'playlist-2',
+        title: 'Spectral Analyzer',
+        href: '/spectral-analyzer',
+        key: 'spectral-analyzer',
         disabled: true,
       },
     ],
@@ -170,7 +132,7 @@ export const sectionWithHeaders = [
   {
     heading: 'CRM',
     key: 'crm',
-    Icon: BookUser,
+    Icon: Truck,
     links: [
       {
         title: 'Contacts',
@@ -187,35 +149,73 @@ export const sectionWithHeaders = [
     ],
   },
   {
-    heading: 'Rights manager',
-    key: 'rights-manager',
-    Icon: BookText,
+    heading: 'Licensing/Sales',
+    key: 'licensing&sales',
+    Icon: Send,
     links: [
       {
-        title: 'Contacts',
-        href: '/contacts',
-        key: 'contacts',
+        title: 'Rights Manager',
+        href: '/rights-manager',
+        key: 'rights-manager',
+        disabled: true,
+      },
+      {
+        title: 'My Offers',
+        href: '/my-offers',
+        key: 'my-offers',
         disabled: true,
       },
     ],
   },
-  {
-    heading: 'Settings',
-    key: 'settings',
-    Icon: Wrench,
-    links: [
-      {
-        title: 'Setting-1',
-        href: '/setting-1',
-        key: 'setting-1',
-        disabled: true,
-      },
-      {
-        title: 'Setting-2',
-        href: '/setting-2',
-        key: 'setting-2',
-        disabled: true,
-      },
-    ],
-  },
+  // {
+  //   heading: 'CRM',
+  //   key: 'crm',
+  //   Icon: BookUser,
+  //   links: [
+  //     {
+  //       title: 'Contacts',
+  //       href: '/contacts',
+  //       key: 'contacts',
+  //       disabled: true,
+  //     },
+  //     {
+  //       title: 'Companies',
+  //       href: '/companies',
+  //       key: 'companies',
+  //       disabled: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   heading: 'Rights manager',
+  //   key: 'rights-manager',
+  //   Icon: BookText,
+  //   links: [
+  //     {
+  //       title: 'Contacts',
+  //       href: '/contacts',
+  //       key: 'contacts',
+  //       disabled: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   heading: 'Settings',
+  //   key: 'settings',
+  //   Icon: Wrench,
+  //   links: [
+  //     {
+  //       title: 'Setting-1',
+  //       href: '/setting-1',
+  //       key: 'setting-1',
+  //       disabled: true,
+  //     },
+  //     {
+  //       title: 'Setting-2',
+  //       href: '/setting-2',
+  //       key: 'setting-2',
+  //       disabled: true,
+  //     },
+  //   ],
+  // },
 ];
