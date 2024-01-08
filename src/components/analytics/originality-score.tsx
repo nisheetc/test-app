@@ -10,13 +10,13 @@ export function OriginalityScore() {
       spotlight
       degrees={360}
     >
-      <h1 className="text-lg font-medium">Originality score</h1>
+      <h1 className="text-lg font-medium">Originality Score</h1>
 
       <div className="flex gap-2">
         <div className="flex flex-col gap-4 pt-2">
           <div className="flex flex-col gap-[1px]">
             <span className="text-xs text-muted-foreground">
-              Trend Compatibility
+              Harmonic Complexity
             </span>
 
             <CountingNumbers
@@ -27,9 +27,7 @@ export function OriginalityScore() {
           </div>
 
           <div className="flex flex-col gap-[1px]">
-            <span className="text-xs text-muted-foreground">
-              Creative Index
-            </span>
+            <span className="text-xs text-muted-foreground">Lyrical Depth</span>
 
             <CountingNumbers
               value={65}
@@ -40,7 +38,7 @@ export function OriginalityScore() {
 
           <div className="flex flex-col gap-[1px]">
             <span className="text-xs text-muted-foreground">
-              Engagement Forecast
+              Instrumental Innovation
             </span>
 
             <CountingNumbers

@@ -25,7 +25,7 @@ import { NotificationsPopover } from './notifications-popover';
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center justify-between px-6">
-      <Link href="/dashboard" className="flex items-center">
+      <Link href="/dashboard/tracks" className="flex items-center">
         <LogoType className="h-16 w-52" />
         {/* <Logo className="h-16" />
         <span className="text-2xl font-semibold tracking-wider">
