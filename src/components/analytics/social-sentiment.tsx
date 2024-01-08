@@ -63,21 +63,21 @@ export function SocialSentiment() {
             <li key={index} className="flex flex-col items-center">
               <div className="relative h-[100px] w-[100px]">
                 <motion.svg
-                  className="absolute inset-0 m-auto"
+                  className="absolute inset-0 m-auto dark:text-[#adfa1d] text-[#7103ec]"
                   viewBox="0 0 100 100"
                   width={100}
                   height={100}
                 >
                   <defs>
                     <linearGradient
-                      id="strokeGradient"
+                      id="strokeGradient3"
                       gradientUnits="objectBoundingBox"
                       x2="0"
                       y2="1"
                     >
                       <stop stopColor="transparent" offset="0%" />
                       {/* <stop stopColor="transparent" offset="50%" /> */}
-                      <stop stopColor="#adfa1d" offset="100%" />
+                      <stop stopColor="currentColor" offset="100%" />
                     </linearGradient>
                   </defs>
                   <motion.circle
@@ -94,13 +94,13 @@ export function SocialSentiment() {
                     cy="50"
                     r="45"
                     fill="transparent"
-                    stroke="url(#strokeGradient)"
+                    stroke="url(#strokeGradient3)"
                   />
                 </motion.svg>
                 <CountingNumbers
                   value={item.engagementScore}
                   duration={1000}
-                  className="absolute inset-0 mx-auto flex items-center justify-center font-display text-2xl font-medium text-[#adfa1d]"
+                  className="absolute inset-0 mx-auto flex items-center justify-center font-display text-2xl font-medium dark:text-[#adfa1d] text-[#7103ec]"
                 />
               </div>
               <span className="text-sm">{item.platform}</span>

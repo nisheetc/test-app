@@ -53,21 +53,21 @@ export function OriginalityScore() {
 
         <div className="relative h-44 w-44">
           <motion.svg
-            className="absolute inset-0 m-auto"
+            className="absolute inset-0 m-auto dark:text-[#adfa1d] text-[#7103ec]"
             viewBox="0 0 100 100"
             width={140}
             height={140}
           >
             <defs>
               <linearGradient
-                id="strokeGradient"
+                id="strokeGradient1"
                 gradientUnits="objectBoundingBox"
                 x2="0"
                 y2="1"
               >
                 <stop stopColor="transparent" offset="0%" />
                 {/* <stop stopColor="transparent" offset="50%" /> */}
-                <stop stopColor="#adfa1d" offset="100%" />
+                <stop stopColor="currentColor" offset="100%" />
               </linearGradient>
             </defs>
             <motion.circle
@@ -84,13 +84,13 @@ export function OriginalityScore() {
               cy="50"
               r="45"
               fill="transparent"
-              stroke="url(#strokeGradient)"
+              stroke="url(#strokeGradient1)"
             />
           </motion.svg>
           <CountingNumbers
             value={55}
             duration={1000}
-            className="absolute inset-0 mx-auto flex items-center justify-center font-display text-4xl font-medium text-[#adfa1d]"
+            className="absolute inset-0 mx-auto flex items-center justify-center font-display text-4xl font-medium dark:text-[#adfa1d] text-[#7103ec]"
           />
         </div>
       </div>
