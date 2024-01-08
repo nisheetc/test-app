@@ -227,7 +227,7 @@ export function AudioTrackManager() {
       </AlertDialog>
 
       <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        <SheetTrigger>Open</SheetTrigger>
+        {/* <SheetTrigger>Open</SheetTrigger> */}
         <SheetContent className="w-[1500px]">
           <SheetHeader>
             <SheetTitle>Coming soon...</SheetTitle>
