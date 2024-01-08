@@ -146,19 +146,19 @@ export function AudioTrackManager() {
     setIsCalculating(false);
   };
 
-  const simulateProcessing = async () => {
-    setIsCalculating(true);
+  useEffect(() => {
+    if (!isCalculating) return;
 
-    // Simulate a task taking 16 seconds
-    await new Promise((resolve) => setTimeout(resolve, 17000));
+    const timer = setTimeout(() => {
+      handleCancel();
+      setIsSheetOpen(true);
+    }, 17000);
 
-    handleCancel();
-    setIsSheetOpen(true);
-
-    // setIsSubmitting(false);
-    // setIsDialogOpen(false); // This will close the dialog
-    // setIsDrawerOpen(true); // Open the drawer
-  };
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCalculating]);
 
   return (
     <>
@@ -218,7 +218,7 @@ export function AudioTrackManager() {
             <Button
               type="button"
               disabled={!isUploadComplete || isCalculating}
-              onClick={simulateProcessing}
+              onClick={() => setIsCalculating(true)}
             >
               {isCalculating ? 'Please wait...' : 'Calculate Score'}
             </Button>
@@ -227,7 +227,7 @@ export function AudioTrackManager() {
       </AlertDialog>
 
       <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        {/* <SheetTrigger>Open</SheetTrigger> */}
+        <SheetTrigger>Open</SheetTrigger>
         <SheetContent className="w-[1500px]">
           <SheetHeader>
             <SheetTitle>Coming soon...</SheetTitle>

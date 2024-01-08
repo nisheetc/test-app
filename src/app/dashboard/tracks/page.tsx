@@ -9,6 +9,32 @@ import { trackSchema } from '@/config/schema';
 
 import { Music2 } from 'lucide-react';
 
+async function getTracks() {
+  const trackData = await fs.readFile(
+    path.join(process.cwd(), 'src/config/tracks.json')
+  );
+
+  const tracks = JSON.parse(trackData.toString());
+
+  return z.array(trackSchema).parse(tracks);
+}
+
+export default async function Tracks() {
+  const tracks = await getTracks();
+
+  return (
+    <div className="flex flex-col grow">
+      <div className="flex items-center gap-2 px-8 py-4 border-b">
+        <Music2 className="h-5 w-5" /> <span>List of Tracks</span>
+      </div>
+
+      <div className="flex flex-col gap-4 px-6 pt-2 pb-16">
+        <DataTable data={tracks} columns={columns} />
+      </div>
+    </div>
+  );
+}
+
 // const data = [
 //   { subject: 'Melodic Innovation', A: 80 },
 //   { subject: 'Harmonic Complexity', A: 70 },
@@ -94,38 +120,8 @@ import { Music2 } from 'lucide-react';
 //   return z.array(taskSchema).parse(tasks);
 // }
 
-async function getTracks() {
-  const trackData = await fs.readFile(
-    path.join(process.cwd(), 'src/config/tracks.json')
-  );
-
-  const tracks = JSON.parse(trackData.toString());
-
-  return z.array(trackSchema).parse(tracks);
-}
-
-export default async function Tracks() {
-  const tracks = await getTracks();
-
-  // const simulateProcessing = async () => {
-  //   setIsSubmitting(true);
-
-  //   // Simulate a task taking 16 seconds
-  //   await new Promise((resolve) => setTimeout(resolve, 17000));
-
-  //   setIsSubmitting(false);
-  //   setIsDialogOpen(false); // This will close the dialog
-  //   setIsDrawerOpen(true); // Open the drawer
-  // };
-
-  return (
-    <div className="flex flex-col grow">
-      <div className="flex items-center gap-2 px-8 py-4 border-b">
-        <Music2 className="h-5 w-5" /> <span>List of Tracks</span>
-      </div>
-
-      <div className="flex flex-col gap-4 px-6 pt-2 pb-16">
-        {/* <Table>
+{
+  /* <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ART.</TableHead>
@@ -225,9 +221,9 @@ export default async function Tracks() {
               </TooltipProvider>
             ))}
           </TableBody>
-        </Table> */}
+        </Table>
 
-        {/* <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+        <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
           <DrawerTrigger>End.</DrawerTrigger>
           <DrawerContent>
             <DrawerHeader>
@@ -330,10 +326,5 @@ export default async function Tracks() {
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>
-        </Drawer> */}
-
-        <DataTable data={tracks} columns={columns} />
-      </div>
-    </div>
-  );
+        </Drawer> */
 }
