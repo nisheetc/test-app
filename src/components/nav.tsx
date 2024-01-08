@@ -76,7 +76,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
                             </span>
 
                             {item.tempNumber && (
-                              <span className="text-muted">
+                              <span className="text-muted-foreground">
                                 {item.tempNumber}
                               </span>
                             )}
@@ -100,7 +100,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
                           </div>
 
                           {item.tempNumber && (
-                            <span className="text-muted">
+                            <span className="text-muted-foreground">
                               {item.tempNumber}
                             </span>
                           )}
