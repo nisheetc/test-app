@@ -1,7 +1,96 @@
 [
   {
+    "imageUrl": "https://static.wikia.nocookie.net/taylor-swift/images/3/3d/Lover.jpeg/revision/latest?cb=20220327091416",
+    "title": "Cruel Summer",
+    "artist": "Taylor Swift",
+    "album": "Lover",
+    "duration": 178,
+    "year": "2019-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/Drake_-_For_All_The_Dogs.png",
+    "title": "First Person Shooter",
+    "artist": "Drake",
+    "album": "For All The Dogs",
+    "duration": 247,
+    "year": "2023-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/02/Queen_Greatest_Hits.png",
+    "title": "Another One Bites The Dust - Remastered 2011",
+    "artist": "Queen",
+    "album": "Greatest Hits",
+    "duration": 215,
+    "year": "2014-12-28"
+  },
+
+  {
+    "imageUrl": "https://i.discogs.com/_MoJX9ipnOHEkTp1ETEtXX0WO31RiAC2QdYwQ1r4QA8/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTY0/NDg1LTE1NjUwNDA3/OTAtODE5NC5qcGVn.jpeg",
+    "title": "Smooth",
+    "artist": "Santana feat. Rob Thomas",
+    "album": "Supernatural (Remastered)",
+    "duration": 294,
+    "year": "1999-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/72/%22Lovin_On_Me%22_by_Jack_Harlow_-_cover_art.png",
+    "title": "Lovin on Me",
+    "artist": "Jack Harlow",
+    "album": "Lovin On Me",
+    "duration": 138,
+    "year": "2023-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/93/Bob_Dylan_-_Nashville_Skyline.jpg",
+    "title": "Lay, Lady, Lay",
+    "artist": "Bob Dylan",
+    "album": "Nashville Skyline",
+    "duration": 197,
+    "year": "1969-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/%22AM%22_%28Arctic_Monkeys%29.jpg",
+    "title": "Do I Wanna Know",
+    "artist": "Arctic Monkeys",
+    "album": "AM",
+    "duration": 272,
+    "year": "2013-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/Doja_Cat_-_Paint_the_Town_Red.png",
+    "title": "Paint The Town Red",
+    "artist": "Doja Cat",
+    "album": "Paint The Town Red",
+    "duration": 232,
+    "year": "2023-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/bc/Zanaka_Cover.jpg",
+    "title": "Makeba",
+    "artist": "Jain",
+    "album": "Zanaka (Deluxe)",
+    "duration": 250,
+    "year": "2016-12-28"
+  },
+
+  {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a7/Paul_Russell_-_Lil_Boo_Thang.png",
+    "title": "Lil Boo Thang",
+    "artist": "Paul Russell",
+    "album": "Lil Boo Thang",
+    "duration": 114,
+    "year": "2023-12-28"
+  },
+  {
     "imageUrl": "https://e-cdns-images.dzcdn.net/images/cover/3299fd66c7e6378deb88e87a4fd72bc7/250x250-000000-80-0-0.jpg",
-    "title": "Sweet Lovin'",
+    "title": "Sweet Lovin",
     "artist": "The Moonlight String Orchestra",
     "album": "The Music of Celine Dion",
     "duration": 173,
