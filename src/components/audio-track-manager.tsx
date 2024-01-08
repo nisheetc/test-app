@@ -143,9 +143,9 @@ export function AudioTrackManager() {
     if (!isCalculating) return;
 
     const timer = setTimeout(() => {
-      router.push(`/dashboard/tracks/${file?.name}`, { scroll: false });
-      handleCancel();
-    }, 17000);
+      router.push(`/dashboard/tracks/${file?.name}`);
+      // handleCancel();
+    }, 16500);
 
     return () => {
       clearTimeout(timer);
