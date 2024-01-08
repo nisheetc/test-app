@@ -27,6 +27,7 @@ import { SimilarityScore } from '@/components/analytics/similarity-score';
 import { ValuationAssessment } from '@/components/analytics/valuation-assessment';
 import { PortfolioRank } from '@/components/analytics/portfolio-rank';
 import { SocialSentiment } from '@/components/analytics/social-sentiment';
+import { PredictiveModelling } from '@/components/analytics/predictive-modelling';
 
 const data = [
   { date: '2023-01-01', trackValuation: 500000, marketMedian: 700000 },
@@ -310,7 +311,11 @@ export default function Page() {
         <SimilarityScore />
         <ValuationAssessment />
       </div>
-      <SocialSentiment />
+
+      <div className="flex gap-2">
+        <PredictiveModelling />
+        <SocialSentiment />
+      </div>
       {/* <PortfolioRank /> */}
 
       {/* <SpectralWaveform />
