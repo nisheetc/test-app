@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { FileMusicIcon } from 'lucide-react';
 import { Cross2Icon } from '@radix-ui/react-icons';
@@ -17,14 +18,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { FileDropzone } from '@/components/file-dropzone';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 
 import { Button } from './ui/button';
 import ScoreLoader from './score-loader';
@@ -120,11 +113,11 @@ const UploadProgress: React.FC<UploadProgressProps> = ({
 };
 
 export function AudioTrackManager() {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [isUploadOpen, setIsUploadOpen] = useState<boolean>(false);
   const [isUploadComplete, setIsUploadComplete] = useState<boolean>(false);
   const [isCalculating, setIsCalculating] = useState<boolean>(false);
-  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
 
   const handleFileDrop = (_file: File) => {
     setIsUploadComplete(false);
@@ -150,8 +143,8 @@ export function AudioTrackManager() {
     if (!isCalculating) return;
 
     const timer = setTimeout(() => {
+      router.push(`/dashboard/tracks/${file?.name}`, { scroll: false });
       handleCancel();
-      setIsSheetOpen(true);
     }, 17000);
 
     return () => {
@@ -161,80 +154,68 @@ export function AudioTrackManager() {
   }, [isCalculating]);
 
   return (
-    <>
-      <AlertDialog open={isUploadOpen} onOpenChange={setIsUploadOpen}>
-        <AlertDialogTrigger asChild>
-          <Button onClick={() => setIsUploadOpen(true)}>New Track</Button>
-        </AlertDialogTrigger>
+    <AlertDialog open={isUploadOpen} onOpenChange={setIsUploadOpen}>
+      <AlertDialogTrigger asChild>
+        <Button onClick={() => setIsUploadOpen(true)}>New Track</Button>
+      </AlertDialogTrigger>
 
-        <AlertDialogContent className="sm:max-w-md">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="pt-4 pb-2 text-2xl font-semibold tracking-tight text-center">
-              {isCalculating ? 'Computing values' : 'Add your track'}
-            </AlertDialogTitle>
-          </AlertDialogHeader>
+      <AlertDialogContent className="sm:max-w-md">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="pt-4 pb-2 text-2xl font-semibold tracking-tight text-center">
+            {isCalculating ? 'Computing values' : 'Add your track'}
+          </AlertDialogTitle>
+        </AlertDialogHeader>
 
-          {isCalculating ? (
-            <>
-              <div className="flex flex-col items-center justify-center gap-16 pt-16">
-                <div className="lds-roller">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <ScoreLoader phrases={analysisPhrases} />
+        {isCalculating ? (
+          <>
+            <div className="flex flex-col items-center justify-center gap-16 pt-16">
+              <div className="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
               </div>
-            </>
-          ) : (
-            <>
-              <FileDropzone
-                onDrop={handleFileDrop}
-                type="audio"
-                disabled={!isUploadOpen}
+              <ScoreLoader phrases={analysisPhrases} />
+            </div>
+          </>
+        ) : (
+          <>
+            <FileDropzone
+              onDrop={handleFileDrop}
+              type="audio"
+              disabled={!isUploadOpen}
+            />
+
+            {file && (
+              <UploadProgress
+                file={file}
+                onRemove={handleRemove}
+                onComplete={handleUploadComplete}
               />
+            )}
+          </>
+        )}
 
-              {file && (
-                <UploadProgress
-                  file={file}
-                  onRemove={handleRemove}
-                  onComplete={handleUploadComplete}
-                />
-              )}
-            </>
-          )}
-
-          <AlertDialogFooter className="grid grid-cols-2 gap-2 pt-2">
-            <AlertDialogCancel asChild onClick={handleCancel}>
-              <Button type="button" variant="outline">
-                Cancel
-              </Button>
-            </AlertDialogCancel>
-
-            <Button
-              type="button"
-              disabled={!isUploadComplete || isCalculating}
-              onClick={() => setIsCalculating(true)}
-            >
-              {isCalculating ? 'Please wait...' : 'Calculate Score'}
+        <AlertDialogFooter className="grid grid-cols-2 gap-2 pt-2">
+          <AlertDialogCancel asChild onClick={handleCancel}>
+            <Button type="button" variant="outline">
+              Cancel
             </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+          </AlertDialogCancel>
 
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        {/* <SheetTrigger>Open</SheetTrigger> */}
-        <SheetContent className="w-[1500px]">
-          <SheetHeader>
-            <SheetTitle>Coming soon...</SheetTitle>
-            <SheetDescription>Final scoring will be here.</SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
-    </>
+          <Button
+            type="button"
+            disabled={!isUploadComplete || isCalculating}
+            onClick={() => setIsCalculating(true)}
+          >
+            {isCalculating ? 'Please wait...' : 'Calculate Score'}
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

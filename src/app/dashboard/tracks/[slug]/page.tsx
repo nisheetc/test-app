@@ -25,6 +25,7 @@ import { CountingNumbers } from '@/components/counting-numbers';
 import { OriginalityScore } from '@/components/analytics/originality-score';
 import { SimilarityScore } from '@/components/analytics/similarity-score';
 import { ValuationAssessment } from '@/components/analytics/valuation-assessment';
+import { PortfolioRank } from '@/components/analytics/portfolio-rank';
 
 const data = [
   { date: '2023-01-01', trackValuation: 500000, marketMedian: 700000 },
@@ -306,6 +307,8 @@ export default function Page() {
       <OriginalityScore />
       <SimilarityScore />
       <ValuationAssessment />
+
+      {/* <PortfolioRank /> */}
 
       {/* <SpectralWaveform />
 
