@@ -57,8 +57,12 @@ export function DataTableRowActions<TData>({
             <DropdownMenuItem onClick={redirect}>
               Check Originality
             </DropdownMenuItem>
-            <DropdownMenuItem>Evaluate Valuation</DropdownMenuItem>
-            <DropdownMenuItem>Analyze Trends</DropdownMenuItem>
+            <DropdownMenuItem onClick={redirect}>
+              Evaluate Valuation
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={redirect}>
+              Analyze Trends
+            </DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
 
