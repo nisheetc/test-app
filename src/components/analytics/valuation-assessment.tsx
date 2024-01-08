@@ -1,5 +1,25 @@
 'use client';
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
+
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+
 import { Card } from '@/components/Card';
 import {
   XAxis,
@@ -129,6 +149,7 @@ export function ValuationAssessment() {
             tickFormatter={formatDate}
             tickMargin={10}
             tick={{ fontSize: '12px' }}
+            interval={1}
           />
           <YAxis
             domain={[500000, 1100000]}
@@ -181,6 +202,47 @@ export function ValuationAssessment() {
           />
         </AreaChart>
       </ResponsiveContainer>
+
+      <Dialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className="absolute bottom-2 right-2">
+            <Button
+              variant="ghost"
+              className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+            >
+              <DotsHorizontalIcon className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" className="w-[200px]">
+            <DialogTrigger asChild>
+              <DropdownMenuItem>View Details</DropdownMenuItem>
+            </DialogTrigger>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DialogContent className="pt-8">
+          <DialogHeader>
+            <DialogTitle>Valuation</DialogTitle>
+            <DialogDescription className="leading-6 pt-5">
+              The Valuation feature of our system provides a comprehensive
+              financial assessment of audio files, ranging from $0 to over $1
+              million to pinpoint clear value. This tool is designed to assist
+              industry giants in making informed investment decisions. We
+              categorizes valuations into three distinct levels: $0-100k,
+              $100k-1M, and $1M+, offering a nuanced understanding of a
+              track&apos;s potential market value, based on its originality and
+              market trends.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter>
+            <DialogClose>
+              <Button variant="outline">Close</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }

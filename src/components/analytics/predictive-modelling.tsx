@@ -1,5 +1,25 @@
 'use client';
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
+
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+
 import { Card } from '@/components/Card';
 import {
   XAxis,
@@ -170,9 +190,46 @@ export function PredictiveModelling() {
         </LineChart>
       </ResponsiveContainer>
 
-      <button className="absolute bottom-2 right-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground flex h-8 w-8 p-0 data-[state=open]:bg-muted">
-        ...
-      </button>
+      <Dialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className="absolute bottom-2 right-2">
+            <Button
+              variant="ghost"
+              className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+            >
+              <DotsHorizontalIcon className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" className="w-[200px]">
+            <DialogTrigger asChild>
+              <DropdownMenuItem>View Details</DropdownMenuItem>
+            </DialogTrigger>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DialogContent className="pt-8">
+          <DialogHeader>
+            <DialogTitle>Predictive Modeling</DialogTitle>
+            <DialogDescription className="leading-6 pt-5">
+              Predictive Modeling in our system is a revolutionary tool for
+              forecasting a track’s market performance. It combines real-time
+              data analytics and social sentiment analysis, offering entities,
+              managers, producers and labels a predictive edge in identifying
+              potential hits. This feature reduces the time and resources spent
+              on market research, providing a data-driven approach to foresee
+              the &apos;hit percentage&apos; and market traction of new
+              releases.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter>
+            <DialogClose>
+              <Button variant="outline">Close</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }

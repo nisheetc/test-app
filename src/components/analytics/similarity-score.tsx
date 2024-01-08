@@ -1,6 +1,26 @@
 import { Card } from '@/components/Card';
 import { CountingNumbers } from '../counting-numbers';
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
+
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+
 import { motion } from 'framer-motion';
 
 export function SimilarityScore() {
@@ -94,9 +114,46 @@ export function SimilarityScore() {
         </div>
       </div>
 
-      <button className="absolute bottom-2 right-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground flex h-8 w-8 p-0 data-[state=open]:bg-muted">
-        ...
-      </button>
+      <Dialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className="absolute bottom-2 right-2">
+            <Button
+              variant="ghost"
+              className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+            >
+              <DotsHorizontalIcon className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" className="w-[200px]">
+            <DialogTrigger asChild>
+              <DropdownMenuItem>View Details</DropdownMenuItem>
+            </DialogTrigger>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DialogContent className="pt-8">
+          <DialogHeader>
+            <DialogTitle>Similarity Score</DialogTitle>
+            <DialogDescription className="leading-6 pt-5">
+              Our Similarity Score, rated out of 100, offers enterprises an
+              essential tool for mitigating the risk of copyright infringement.
+              The lower, the better! By calculating the similarity of an audio
+              file to existing works, it ensures that large entities can
+              maintain the integrity of their creative portfolios. This is
+              particularly crucial in today’s digital landscape, where the line
+              between inspiration and imitation can be thin, providing a
+              reliable measure to safeguard original content.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter>
+            <DialogClose>
+              <Button variant="outline">Close</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
