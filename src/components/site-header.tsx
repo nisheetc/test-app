@@ -46,10 +46,13 @@ export function SiteHeader() {
           <DropdownMenuTrigger asChild>
             <div className="flex items-center justify-center gap-2 cursor-pointer hover:opacity-60 transition-opacity duration-300 ease-out">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>NC</AvatarFallback>
+                <AvatarImage
+                  src="https://i.imgur.com/TvlWjSy.jpg"
+                  className="object-cover"
+                />
+                <AvatarFallback>TS</AvatarFallback>
               </Avatar>
-              <span className="text-sm font-medium">Nisheet C.</span>
+              <span className="text-sm font-medium">Taylor S.</span>
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent

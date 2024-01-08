@@ -26,6 +26,7 @@ import { OriginalityScore } from '@/components/analytics/originality-score';
 import { SimilarityScore } from '@/components/analytics/similarity-score';
 import { ValuationAssessment } from '@/components/analytics/valuation-assessment';
 import { PortfolioRank } from '@/components/analytics/portfolio-rank';
+import { SocialSentiment } from '@/components/analytics/social-sentiment';
 
 const data = [
   { date: '2023-01-01', trackValuation: 500000, marketMedian: 700000 },
@@ -303,11 +304,13 @@ const OriginalityFactors = () => {
 
 export default function Page() {
   return (
-    <div className="flex flex-wrap grow px-8 py-4 gap-4">
-      <OriginalityScore />
-      <SimilarityScore />
-      <ValuationAssessment />
-
+    <div className="flex flex-col px-8 py-4 gap-4">
+      <div className="flex flex-wrap grow  gap-4">
+        <OriginalityScore />
+        <SimilarityScore />
+        <ValuationAssessment />
+      </div>
+      <SocialSentiment />
       {/* <PortfolioRank /> */}
 
       {/* <SpectralWaveform />

@@ -17,6 +17,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useRouter } from 'next/navigation';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -25,6 +26,13 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
+  const router = useRouter();
+
+  const redirect = () => {
+    const title = row.getValue('title');
+    router.push(`/dashboard/tracks/${title}`);
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -46,7 +54,9 @@ export function DataTableRowActions<TData>({
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Analytics</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuItem>Check Originality</DropdownMenuItem>
+            <DropdownMenuItem onClick={redirect}>
+              Check Originality
+            </DropdownMenuItem>
             <DropdownMenuItem>Evaluate Valuation</DropdownMenuItem>
             <DropdownMenuItem>Analyze Trends</DropdownMenuItem>
           </DropdownMenuSubContent>
