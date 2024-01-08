@@ -74,7 +74,12 @@ export function DashboardNav({ items }: DashboardNavProps) {
                                 </span>
                               )}
                             </span>
-                            <span className="text-muted">0</span>
+
+                            {item.tempNumber && (
+                              <span className="text-muted">
+                                {item.tempNumber}
+                              </span>
+                            )}
                           </Link>
                         </li>
                       ) : (
@@ -85,10 +90,18 @@ export function DashboardNav({ items }: DashboardNavProps) {
                             item.disabled && 'cursor-not-allowed opacity-60'
                           )}
                         >
-                          {item.title}
-                          {item.label && (
-                            <span className="ml-2 rounded-md bg-muted px-1.5 py-0.5 text-xs leading-none text-muted-foreground no-underline group-hover:no-underline">
-                              {item.label}
+                          <div>
+                            {item.title}
+                            {item.label && (
+                              <span className="ml-2 rounded-md bg-muted px-1.5 py-0.5 text-xs leading-none text-muted-foreground no-underline group-hover:no-underline">
+                                {item.label}
+                              </span>
+                            )}
+                          </div>
+
+                          {item.tempNumber && (
+                            <span className="text-muted">
+                              {item.tempNumber}
                             </span>
                           )}
                         </span>
