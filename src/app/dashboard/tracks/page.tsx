@@ -5,120 +5,9 @@ import { z } from 'zod';
 import { columns } from './components/columns';
 import { DataTable } from './components/data-table';
 
-// import { tracks } from '@/config/tracks';
-
 import { trackSchema } from '@/config/schema';
 
-import Image from 'next/image';
-
-import { Timer, Music2 } from 'lucide-react';
-
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import {
-  ContextMenu,
-  ContextMenuCheckboxItem,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuTrigger,
-} from '@/components/ui/context-menu';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import Upload from '@/components/upload';
-import ScoreLoader from '@/components/score-loader';
-import { cn } from '@/utils';
-
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
-import { MinusIcon, PlusIcon } from '@radix-ui/react-icons';
-
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip as ChartTooltip,
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  LineChart,
-  Tooltip as LineTooltip,
-  Line,
-  PieChart,
-  Pie,
-} from 'recharts';
-
-const analysisPhrases = [
-  'Analyzing Melodic Patterns',
-  'Assessing Harmonic Structures',
-  'Evaluating Rhythmic Complexity',
-  'Inspecting Instrumental Arrangement',
-  'Deciphering Lyrical Originality',
-  'Examining Production Techniques',
-  'Unraveling Structural Innovations',
-  'Identifying Genre Fusion Elements',
-  'Comparing Rhythm and Beat Patterns',
-  'Matching Melodic Signatures',
-  'Cross-Referencing Harmonic Similarities',
-  'Analyzing Vocal Styles and Delivery',
-  'Exploring Thematic Lyrical Elements',
-  'Investigating Instrumentation Usage',
-  'Reviewing Production Styles',
-  'Assessing Ambience and Mood',
-  'Completed',
-];
+import { Music2 } from 'lucide-react';
 
 // const data = [
 //   { subject: 'Melodic Innovation', A: 80 },
@@ -217,16 +106,6 @@ async function getTracks() {
 
 export default async function Tracks() {
   const tracks = await getTracks();
-  // const tracks = await getTracks();
-
-  // const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [isDialogOpen, setIsDialogOpen] = useState(false);
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  // const handleFormSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   await simulateProcessing();
-  // };
 
   // const simulateProcessing = async () => {
   //   setIsSubmitting(true);
@@ -246,72 +125,6 @@ export default async function Tracks() {
       </div>
 
       <div className="flex flex-col gap-4 px-6 pt-2 pb-16">
-        <div className="flex justify-between">
-          {/* <div className="flex items-center gap-4">
-            <span className="font-medium text-sm">{tracks.length} tracks</span>
-
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Actions" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Action 1</SelectItem>
-                <SelectItem value="dark">Action 2</SelectItem>
-                <SelectItem value="system">Action 3</SelectItem>
-              </SelectContent>
-            </Select>
-          </div> */}
-
-          {/* <Dialog>
-            <DialogTrigger asChild>
-              <Button onClick={() => setIsDialogOpen(true)}>New Track</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              {isSubmitting ? (
-                <>
-                  <DialogHeader>
-                    <DialogTitle>Calculating Originality Score</DialogTitle>
-                  </DialogHeader>
-
-                  <div className="flex flex-col items-center justify-center gap-16 pt-16">
-                    <div className="lds-roller">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <ScoreLoader phrases={analysisPhrases} />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <DialogHeader>
-                    <DialogTitle>Upload</DialogTitle>
-                    <DialogDescription>
-                      We will never store your data.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <form onSubmit={handleFormSubmit}>
-                    <Upload onSubmit={handleFormSubmit} />
-                    <DialogFooter className="grid grid-cols-2 gap-2">
-                      <DialogClose asChild>
-                        <Button type="button" variant="secondary">
-                          Close
-                        </Button>
-                      </DialogClose>
-                      <Button type="submit">Calculate</Button>
-                    </DialogFooter>
-                  </form>
-                </>
-              )}
-            </DialogContent>
-          </Dialog> */}
-        </div>
-
         {/* <Table>
           <TableHeader>
             <TableRow>

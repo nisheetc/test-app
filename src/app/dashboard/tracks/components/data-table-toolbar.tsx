@@ -1,15 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { DataTableViewOptions } from './data-table-view-options';
 
-import { genres } from '@/config/data';
+import { DataTableViewOptions } from './data-table-view-options';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
+import { genres } from '@/config/data';
+
 import { MessageCircleMore } from 'lucide-react';
+import { AudioTrackManager } from '@/components/audio-track-manager';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -21,6 +24,17 @@ export function DataTableToolbar<TData>({
   data,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+
+  const simulateProcessing = async () => {
+    // setIsCalculating(true);
+
+    // Simulate a task taking 16 seconds
+    await new Promise((resolve) => setTimeout(resolve, 17000));
+
+    // setIsSubmitting(false);
+    // setIsDialogOpen(false); // This will close the dialog
+    // setIsDrawerOpen(true); // Open the drawer
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -61,7 +75,8 @@ export function DataTableToolbar<TData>({
           <MessageCircleMore className="h-5 w-5" />
           <span>Chat with DAVE</span>
         </Button>
-        <Button>New Track</Button>
+
+        <AudioTrackManager />
       </div>
     </div>
   );
