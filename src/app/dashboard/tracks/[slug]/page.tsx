@@ -122,7 +122,7 @@ export default function Page() {
         <PredictiveModelling />
       </div>
 
-      <div className="flex px-6 gap-4">
+      <div className="flex px-6 gap-4 pb-6">
         <SocialSentiment />
       </div>
     </div>

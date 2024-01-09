@@ -1,3 +1,7 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card } from '@/components/Card';
 import { CountingNumbers } from '../counting-numbers';
 
@@ -17,43 +21,80 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 
 import { motion } from 'framer-motion';
 
-type PlatformScore = {
+interface PlatformData {
   platform: string;
   engagementScore: number;
-};
+}
 
-type SocialData = {
+interface SocialData {
   overall: number;
-  platforms: PlatformScore[];
-};
-
-const data: SocialData = {
-  overall: 62,
-  platforms: [
-    {
-      platform: 'Spotify',
-      engagementScore: 70,
-    },
-    {
-      platform: 'TikTok',
-      engagementScore: 55,
-    },
-    {
-      platform: 'Twitter',
-      engagementScore: 60,
-    },
-    {
-      platform: 'YouTube',
-      engagementScore: 65,
-    },
-    {
-      platform: 'Instagram',
-      engagementScore: 58,
-    },
-  ],
-};
+  platforms: PlatformData[];
+}
 
 export function SocialSentiment() {
+  const searchParams = useSearchParams();
+
+  const [socialData, setSocialData] = useState<SocialData>({
+    overall: 0,
+    platforms: [
+      { platform: 'Spotify', engagementScore: 0 },
+      { platform: 'TikTok', engagementScore: 0 },
+      { platform: 'Twitter', engagementScore: 0 },
+      { platform: 'YouTube', engagementScore: 0 },
+      { platform: 'Instagram', engagementScore: 0 },
+    ],
+  });
+
+  useEffect(() => {
+    const computeSocialScores = (isHitTrack = false) => {
+      const platforms = [
+        {
+          platform: 'Spotify',
+          engagementScore: isHitTrack
+            ? Math.floor(Math.random() * 20 + 60)
+            : Math.floor(Math.random() * 30 + 40),
+        }, // For Spotify, regular tracks have a range of 40-70, while hit tracks have a range of 60-80
+        {
+          platform: 'TikTok',
+          engagementScore: isHitTrack
+            ? Math.floor(Math.random() * 30 + 50)
+            : Math.floor(Math.random() * 40 + 40),
+        }, // For TikTok, regular tracks have a range of 40-80, while hit tracks have a range of 50-80
+        {
+          platform: 'Twitter',
+          engagementScore: isHitTrack
+            ? Math.floor(Math.random() * 25 + 55)
+            : Math.floor(Math.random() * 40 + 30),
+        }, // For Twitter, regular tracks have a range of 30-70, while hit tracks have a range of 55-80
+        {
+          platform: 'YouTube',
+          engagementScore: isHitTrack
+            ? Math.floor(Math.random() * 20 + 60)
+            : Math.floor(Math.random() * 35 + 40),
+        }, // For YouTube, regular tracks have a range of 40-75, while hit tracks have a range of 60-80
+        {
+          platform: 'Instagram',
+          engagementScore: isHitTrack
+            ? Math.floor(Math.random() * 20 + 60)
+            : Math.floor(Math.random() * 40 + 30),
+        }, // For Instagram, regular tracks have a range of 30-70, while hit tracks have a range of 60-80
+      ];
+
+      // Compute overall score as an average of platform scores
+      const overall =
+        platforms.reduce((acc, platform) => acc + platform.engagementScore, 0) /
+        platforms.length;
+
+      setSocialData({
+        overall: Math.floor(overall),
+        platforms,
+      });
+    };
+
+    const isHitTrack = searchParams.get('hit') === 'true';
+    computeSocialScores(isHitTrack);
+  }, []);
+
   return (
     <Card
       spotlight
@@ -65,12 +106,14 @@ export function SocialSentiment() {
         </h1>
         <span className="text-muted-foreground text-sm">
           Overall score:{' '}
-          <span className="text-foreground font-bold">{data.overall}%</span>
+          <span className="text-foreground font-bold">
+            {socialData.overall}%
+          </span>
         </span>
       </div>
 
       <ul className="flex gap-6 items-center pt-2 px-4">
-        {data.platforms.map((item: PlatformScore, index) => {
+        {socialData.platforms.map((item: PlatformData, index) => {
           const decimalScore = item.engagementScore / 100;
 
           return (

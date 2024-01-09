@@ -7,6 +7,7 @@ export const trackSchema = z.object({
   album: z.string(),
   duration: z.number(),
   year: z.string(),
+  hit: z.boolean().optional(),
 });
 
 export type Track = z.infer<typeof trackSchema>;

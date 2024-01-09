@@ -5,7 +5,8 @@
     "artist": "Taylor Swift",
     "album": "Lover",
     "duration": 178,
-    "year": "2019-12-28"
+    "year": "2019-12-28",
+    "hit": true
   },
 
   {
@@ -14,7 +15,8 @@
     "artist": "Drake",
     "album": "For All The Dogs",
     "duration": 247,
-    "year": "2023-12-28"
+    "year": "2023-12-28",
+    "hit": true
   },
 
   {
@@ -23,7 +25,8 @@
     "artist": "Queen",
     "album": "Greatest Hits",
     "duration": 215,
-    "year": "2014-12-28"
+    "year": "2014-12-28",
+    "hit": true
   },
 
   {
@@ -32,7 +35,8 @@
     "artist": "Santana feat. Rob Thomas",
     "album": "Supernatural (Remastered)",
     "duration": 294,
-    "year": "1999-12-28"
+    "year": "1999-12-28",
+    "hit": true
   },
 
   {
@@ -41,7 +45,8 @@
     "artist": "Jack Harlow",
     "album": "Lovin On Me",
     "duration": 138,
-    "year": "2023-12-28"
+    "year": "2023-12-28",
+    "hit": true
   },
 
   {
@@ -50,7 +55,8 @@
     "artist": "Bob Dylan",
     "album": "Nashville Skyline",
     "duration": 197,
-    "year": "1969-12-28"
+    "year": "1969-12-28",
+    "hit": true
   },
 
   {
@@ -59,7 +65,8 @@
     "artist": "Arctic Monkeys",
     "album": "AM",
     "duration": 272,
-    "year": "2013-12-28"
+    "year": "2013-12-28",
+    "hit": true
   },
 
   {
@@ -68,7 +75,8 @@
     "artist": "Doja Cat",
     "album": "Paint The Town Red",
     "duration": 232,
-    "year": "2023-12-28"
+    "year": "2023-12-28",
+    "hit": true
   },
 
   {
@@ -77,7 +85,8 @@
     "artist": "Jain",
     "album": "Zanaka (Deluxe)",
     "duration": 250,
-    "year": "2016-12-28"
+    "year": "2016-12-28",
+    "hit": true
   },
 
   {
@@ -86,7 +95,8 @@
     "artist": "Paul Russell",
     "album": "Lil Boo Thang",
     "duration": 114,
-    "year": "2023-12-28"
+    "year": "2023-12-28",
+    "hit": true
   },
   {
     "imageUrl": "https://e-cdns-images.dzcdn.net/images/cover/3299fd66c7e6378deb88e87a4fd72bc7/250x250-000000-80-0-0.jpg",

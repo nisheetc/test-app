@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Card } from '@/components/Card';
 import { CountingNumbers } from '../counting-numbers';
 
@@ -12,12 +15,35 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-
 import { motion } from 'framer-motion';
 
 export function OriginalityScore() {
+  const [analysis, setAnalysis] = useState({
+    originalityScore: 0,
+    harmonicComplexity: 0,
+    lyricalDepth: 0,
+    instrumentalInnovation: 0,
+  });
+
+  useEffect(() => {
+    const computeScore = () => {
+      const originalityScore = Math.floor(Math.random() * 30 + 40); // Score between 40-70
+      const harmonicComplexity = Math.floor(Math.random() * 40 + 30); // Score between 30-70
+      const lyricalDepth = Math.floor(Math.random() * 60 + 20); // Score between 20-80
+      const instrumentalInnovation = Math.floor(Math.random() * 40 + 30); // Score between 30-70
+
+      setAnalysis({
+        originalityScore,
+        harmonicComplexity,
+        lyricalDepth,
+        instrumentalInnovation,
+      });
+    };
+
+    computeScore();
+  }, []);
+
   return (
     <Card
       className="relative flex flex-col gap-2 rounded-xl px-4 pt-4 pb-1"
@@ -34,7 +60,7 @@ export function OriginalityScore() {
             </span>
 
             <CountingNumbers
-              value={80}
+              value={analysis.harmonicComplexity}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -44,7 +70,7 @@ export function OriginalityScore() {
             <span className="text-xs text-muted-foreground">Lyrical Depth</span>
 
             <CountingNumbers
-              value={65}
+              value={analysis.lyricalDepth}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -56,7 +82,7 @@ export function OriginalityScore() {
             </span>
 
             <CountingNumbers
-              value={75}
+              value={analysis.instrumentalInnovation}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -84,7 +110,7 @@ export function OriginalityScore() {
             </defs>
             <motion.circle
               initial={{ pathLength: 0 }}
-              animate={{ pathLength: 0.55 }}
+              animate={{ pathLength: analysis.originalityScore / 100 }}
               whileInView={{ pathLength: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 2, ease: 'easeOut' }}
@@ -100,7 +126,7 @@ export function OriginalityScore() {
             />
           </motion.svg>
           <CountingNumbers
-            value={55}
+            value={analysis.originalityScore}
             duration={1000}
             className="absolute inset-0 mx-auto flex items-center justify-center font-display text-4xl font-medium dark:text-[#adfa1d] text-[#7103ec]"
           />

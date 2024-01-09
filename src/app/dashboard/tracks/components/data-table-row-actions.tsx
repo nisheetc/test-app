@@ -30,7 +30,13 @@ export function DataTableRowActions<TData>({
 
   const redirect = () => {
     const title = row.getValue('title');
-    router.push(`/dashboard/tracks/${title}`);
+    const isHit = (row.original as { hit?: boolean }).hit ?? false;
+
+    if (isHit) {
+      router.push(`/dashboard/tracks/${title}?hit=true`);
+    } else {
+      router.push(`/dashboard/tracks/${title}`);
+    }
   };
 
   return (
@@ -53,7 +59,7 @@ export function DataTableRowActions<TData>({
 
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Analytics</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubContent className="w-[180px]">
             <DropdownMenuItem onClick={redirect}>
               Check Originality
             </DropdownMenuItem>

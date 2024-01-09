@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Card } from '@/components/Card';
 import { CountingNumbers } from '../counting-numbers';
 
@@ -18,6 +21,31 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 
 export function SimilarityScore() {
+  const [analysis, setAnalysis] = useState({
+    similarityScore: 0,
+    genreAlignment: 0,
+    melodicSimilarity: 0,
+    rhythmicSimilarity: 0,
+  });
+
+  useEffect(() => {
+    const computeScore = () => {
+      const similarityScore = Math.floor(Math.random() * 40 + 20); // Score between 20-60
+      const genreAlignment = Math.floor(Math.random() * 40 + 40); // Score between 40-80
+      const melodicSimilarity = Math.floor(Math.random() * 40 + 30); // Score between 30-70
+      const rhythmicSimilarity = Math.floor(Math.random() * 40 + 30); // Score between 30-70
+
+      setAnalysis({
+        similarityScore,
+        genreAlignment,
+        melodicSimilarity,
+        rhythmicSimilarity,
+      });
+    };
+
+    computeScore();
+  }, []);
+
   return (
     <Card
       className="relative flex flex-col gap-2 rounded-xl px-4 pt-4 pb-1"
@@ -34,7 +62,7 @@ export function SimilarityScore() {
             </span>
 
             <CountingNumbers
-              value={60}
+              value={analysis.genreAlignment}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -46,7 +74,7 @@ export function SimilarityScore() {
             </span>
 
             <CountingNumbers
-              value={40}
+              value={analysis.melodicSimilarity}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -58,7 +86,7 @@ export function SimilarityScore() {
             </span>
 
             <CountingNumbers
-              value={30}
+              value={analysis.rhythmicSimilarity}
               duration={1000}
               className="text-sm font-medium"
             />
@@ -85,7 +113,7 @@ export function SimilarityScore() {
             </defs>
             <motion.circle
               initial={{ pathLength: 0 }}
-              animate={{ pathLength: 0.35 }}
+              animate={{ pathLength: analysis.similarityScore / 100 }}
               whileInView={{ pathLength: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 2, ease: 'easeOut' }}
@@ -101,7 +129,7 @@ export function SimilarityScore() {
             />
           </motion.svg>
           <CountingNumbers
-            value={35}
+            value={analysis.similarityScore}
             duration={1000}
             className="absolute inset-0 mx-auto flex items-center justify-center font-display text-4xl font-medium dark:text-[#adfa1d] text-[#7103ec]"
           />
