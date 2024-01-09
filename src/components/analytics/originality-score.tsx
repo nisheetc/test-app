@@ -12,12 +12,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from '@/components/ui/dropdown-menu';
 
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 
@@ -114,23 +108,16 @@ export function OriginalityScore() {
       </div>
 
       <Dialog>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild className="absolute bottom-2 right-2">
-            <Button
-              variant="ghost"
-              className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-            >
-              <DotsHorizontalIcon className="h-4 w-4" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </DropdownMenuTrigger>
+        <DialogTrigger asChild className="absolute bottom-2 right-2">
+          <Button
+            variant="ghost"
+            className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+          >
+            <DotsHorizontalIcon className="h-4 w-4" />
+            <span className="sr-only">Open menu</span>
+          </Button>
+        </DialogTrigger>
 
-          <DropdownMenuContent align="end" className="w-[200px]">
-            <DialogTrigger asChild>
-              <DropdownMenuItem>View Details</DropdownMenuItem>
-            </DialogTrigger>
-          </DropdownMenuContent>
-        </DropdownMenu>
         <DialogContent className="pt-8">
           <DialogHeader>
             <DialogTitle>Originality Score</DialogTitle>
