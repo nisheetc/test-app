@@ -8,6 +8,7 @@ import { SocialSentiment } from '@/components/analytics/social-sentiment';
 import { PredictiveModelling } from '@/components/analytics/predictive-modelling';
 import { SpectralAnalysis } from '@/components/analytics/spectral-analysis';
 import { FileMusicIcon } from 'lucide-react';
+import { TrackMetadata } from '@/components/analytics/track-metadata';
 
 const data = [
   { date: '2023-01-01', trackValuation: 500000, marketMedian: 700000 },
@@ -100,7 +101,7 @@ export default function Page() {
       </div>
 
       <div className="flex flex-wrap grow px-6 gap-4">
-        <div className="h-48 w-48"></div>
+        {/* <TrackMetadata /> */}
         <OriginalityScore />
         <SimilarityScore />
         <ValuationAssessment />
