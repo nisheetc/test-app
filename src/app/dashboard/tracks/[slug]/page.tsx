@@ -100,6 +100,7 @@ export default function Page() {
       </div>
 
       <div className="flex flex-wrap grow px-6 gap-4">
+        <div className="h-48 w-48"></div>
         <OriginalityScore />
         <SimilarityScore />
         <ValuationAssessment />

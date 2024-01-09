@@ -93,10 +93,10 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
             Market: <span className="font-bold">{marketMedian?.value}% </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-foreground"></div>
             BC: <span className="font-bold">{beatConsistency?.value}% </span>
-          </div>
+          </div> */}
         </div>
       </div>
     );
