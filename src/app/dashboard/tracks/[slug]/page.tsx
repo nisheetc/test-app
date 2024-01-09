@@ -1,17 +1,5 @@
 'use client';
 
-import { Card } from '@/components/Card';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Area,
-} from 'recharts';
-
 import { OriginalityScore } from '@/components/analytics/originality-score';
 import { SimilarityScore } from '@/components/analytics/similarity-score';
 import { ValuationAssessment } from '@/components/analytics/valuation-assessment';
