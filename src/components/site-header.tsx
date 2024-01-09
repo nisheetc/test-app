@@ -19,8 +19,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ModeToggle } from '@/components';
 import { CommandMenu } from '@/components/command-menu';
-import { Logo, LogoType } from './icons';
-import { NotificationsPopover } from './notifications-popover';
+import { Logo, LogoType } from '@/components/icons';
+import { NotificationsPopover } from '@/components/notifications-popover';
+import { Button } from '@/components/ui/button';
+import { InboxIcon } from 'lucide-react';
 
 export function SiteHeader() {
   return (
@@ -41,6 +43,10 @@ export function SiteHeader() {
         <ModeToggle />
 
         <NotificationsPopover />
+
+        <Button variant="outline" size="icon">
+          <InboxIcon className="h-[1.2rem] w-[1.2rem]" />
+        </Button>
 
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>

@@ -131,8 +131,14 @@ export function ValuationAssessment() {
       <ResponsiveContainer>
         <AreaChart
           data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 0, right: 30, left: 5, bottom: 2 }}
         >
+          <defs>
+            <linearGradient id="marketTrendMask" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#adfa1d" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#adfa1d" stopOpacity={0} />
+            </linearGradient>
+          </defs>
           <CartesianGrid
             strokeDasharray="3 3"
             stroke="currentColor"
@@ -184,15 +190,17 @@ export function ValuationAssessment() {
             stroke="#7103ec"
             name="Your Track"
             fillOpacity={0.95}
-            fill="#7103ec"
+            fill="transparent"
+            strokeWidth={4}
+            strokeDasharray="10 6"
           />
           <Area
             type="monotone"
             dataKey="marketMedian"
             stroke="#adfa1d"
-            name="Market Median"
+            name="Market"
             fillOpacity={0.3}
-            fill="#adfa1d"
+            fill="url(#marketTrendMask)"
           />
         </AreaChart>
       </ResponsiveContainer>

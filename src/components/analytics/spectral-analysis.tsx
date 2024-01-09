@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Dialog,
   DialogClose,
@@ -29,33 +27,41 @@ import {
   LineChart,
 } from 'recharts';
 import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
 
 const data = [
-  { date: '2023-01-01', hitPotential: 65.2, marketTrend: 48.3 },
-  { date: '2023-02-01', hitPotential: 68.7, marketTrend: 52.8 },
-  { date: '2023-03-01', hitPotential: 70.1, marketTrend: 55.6 },
-  { date: '2023-04-01', hitPotential: 72.3, marketTrend: 59.2 },
-  { date: '2023-05-01', hitPotential: 74.8, marketTrend: 62.1 },
-  { date: '2023-06-01', hitPotential: 73.5, marketTrend: 59.8 },
-  { date: '2023-07-01', hitPotential: 76.9, marketTrend: 65.3 },
-  { date: '2023-08-01', hitPotential: 78.2, marketTrend: 68.5 },
-  { date: '2023-09-01', hitPotential: 79.7, marketTrend: 70.2 },
-  { date: '2023-10-01', hitPotential: 81.4, marketTrend: 73.4 },
-  { date: '2023-11-01', hitPotential: 79.8, marketTrend: 71.1 },
-  { date: '2023-12-01', hitPotential: 82.0, marketTrend: 74.3 },
-  { date: '2024-01-01', hitPotential: 80.5, marketTrend: 72.5 },
-  { date: '2024-02-01', hitPotential: 78.3, marketTrend: 70.3 },
-  { date: '2024-03-01', hitPotential: 75.9, marketTrend: 67.8 },
-  { date: '2024-04-01', hitPotential: 73.2, marketTrend: 64.5 },
-  { date: '2024-05-01', hitPotential: 71.0, marketTrend: 61.8 },
-  { date: '2024-06-01', hitPotential: 68.6, marketTrend: 59.3 },
-  { date: '2024-07-01', hitPotential: 66.8, marketTrend: 57.4 },
-  { date: '2024-08-01', hitPotential: 65.4, marketTrend: 56.0 },
-  { date: '2024-09-01', hitPotential: 64.2, marketTrend: 54.7 },
-  { date: '2024-10-01', hitPotential: 63.5, marketTrend: 53.8 },
-  { date: '2024-11-01', hitPotential: 62.8, marketTrend: 53.0 },
-  { date: '2024-12-01', hitPotential: 62.1, marketTrend: 52.3 },
+  { date: '2023-01-01', yourTrack: 70, marketMedian: 50, beatConsistency: 30 },
+  { date: '2023-02-01', yourTrack: 65, marketMedian: 55, beatConsistency: 35 },
+  { date: '2023-03-01', yourTrack: 75, marketMedian: 60, beatConsistency: 40 },
+  { date: '2023-04-01', yourTrack: 80, marketMedian: 65, beatConsistency: 45 },
+  { date: '2023-05-01', yourTrack: 85, marketMedian: 70, beatConsistency: 50 },
+  { date: '2023-06-01', yourTrack: 90, marketMedian: 75, beatConsistency: 55 },
+  { date: '2023-07-01', yourTrack: 95, marketMedian: 80, beatConsistency: 60 },
+  { date: '2023-08-01', yourTrack: 85, marketMedian: 85, beatConsistency: 65 },
+  { date: '2023-09-01', yourTrack: 80, marketMedian: 90, beatConsistency: 70 },
+  { date: '2023-10-01', yourTrack: 75, marketMedian: 95, beatConsistency: 75 },
+  { date: '2023-11-01', yourTrack: 70, marketMedian: 90, beatConsistency: 80 },
+  { date: '2023-12-01', yourTrack: 65, marketMedian: 85, beatConsistency: 85 },
 ];
+
+const computeMarketMedian = () => {
+  let data = [];
+  let currentDate = new Date('2023-01-01');
+
+  for (let i = 0; i < 200; i++) {
+    // Example algorithm for computing market median
+    const medianValue = Math.sin(i / 20) * 50 + 50; // Just a sample function for illustrative purposes
+
+    data.push({
+      date: currentDate.toISOString().split('T')[0],
+      marketMedian: medianValue,
+    });
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return data;
+};
 
 const formatDate = (dateStr: any) => {
   const date = new Date(dateStr);
@@ -68,22 +74,29 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
   label,
 }) => {
   if (active && payload && payload.length > 1) {
-    const hitPotential = payload.find((p) => p.dataKey === 'hitPotential');
-    const marketTrend = payload.find((p) => p.dataKey === 'marketTrend');
+    const yourTrack = payload.find((p) => p.dataKey === 'yourTrack');
+    const marketMedian = payload.find((p) => p.dataKey === 'marketMedian');
+    const beatConsistency = payload.find(
+      (p) => p.dataKey === 'beatConsistency'
+    );
 
     return (
       <div className="px-3 py-2 text-sm bg-foreground/95 backdrop-blur supports-[backdrop-filter]:bg-foreground/80 text-background rounded-xl">
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#7103ec]"></div>
-            Your Track:{' '}
-            <span className="font-bold">{hitPotential?.value}%</span>
+            Your Track: <span className="font-bold">{yourTrack?.value}%</span>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#adfa1d]"></div>
             Market Median:{' '}
-            <span className="font-bold">{marketTrend?.value}% </span>
+            <span className="font-bold">{marketMedian?.value}% </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-foreground"></div>
+            BC: <span className="font-bold">{beatConsistency?.value}% </span>
           </div>
         </div>
       </div>
@@ -123,16 +136,22 @@ const CustomLegend = (props: any) => {
   );
 };
 
-export function PredictiveModelling() {
+export function SpectralAnalysis() {
+  const [marketData, setMarketData] = useState<any>([]);
+
+  useEffect(() => {
+    const computedData = computeMarketMedian();
+    console.log('computedData', computedData);
+    setMarketData(computedData);
+  }, []);
+
   return (
     <Card
       spotlight
       style={{ width: 500, height: 250 }}
       className="relative flex flex-col gap-2 rounded-xl px-4 pt-4 pb-4"
     >
-      <h1 className="text-lg font-medium text-foreground">
-        Predictive Modelling
-      </h1>
+      <h1 className="text-lg font-medium text-foreground">Spectral Analysis</h1>
 
       <ResponsiveContainer>
         <AreaChart
@@ -167,34 +186,28 @@ export function PredictiveModelling() {
             }}
             content={<CustomLegend />}
           />
-          {/* <Line
-            type="monotone"
-            name="Hit Potential"
-            dataKey="hitPotential"
-            stroke="#7103ec"
-            dot={false}
-          /> */}
-
           <Area
             type="monotone"
-            dataKey="hitPotential"
+            dataKey="beatConsistency"
+            stroke="currentColor"
+            name="BC"
+            fillOpacity={0.95}
+            fill="transparent"
+            strokeDasharray="10 6"
+          />
+          <Area
+            type="monotone"
+            dataKey="yourTrack"
             stroke="#7103ec"
-            name="Hit Potential"
+            name="Your Track"
             fillOpacity={0.95}
             fill="transparent"
             strokeWidth={4}
             strokeDasharray="10 6"
           />
-          {/* <Line
-            type="monotone"
-            name="Market Trend"
-            dataKey="marketTrend"
-            stroke="#adfa1d"
-            dot={false}
-          /> */}
           <Area
             type="monotone"
-            dataKey="marketTrend"
+            dataKey="marketMedian"
             stroke="#adfa1d"
             name="Market"
             fillOpacity={0.3}
@@ -216,16 +229,15 @@ export function PredictiveModelling() {
 
         <DialogContent className="pt-8">
           <DialogHeader>
-            <DialogTitle>Predictive Modeling</DialogTitle>
+            <DialogTitle>Spectral Waveform Analysis</DialogTitle>
             <DialogDescription className="leading-6 pt-5">
-              Predictive Modeling in our system is a revolutionary tool for
-              forecasting a track&apos;s market performance. It combines
-              real-time data analytics and social sentiment analysis, offering
-              entities, managers, producers and labels a predictive edge in
-              identifying potential hits. This feature reduces the time and
-              resources spent on market research, providing a data-driven
-              approach to foresee the &apos;hit percentage&apos; and market
-              traction of new releases.
+              Spectral Waveform Analysis is a cutting-edge feature that compares
+              two audio files, highlighting their points of intersection. This
+              tool is an asset for large content portfolios, enabling the
+              dissection and understand the intricacies of sound design and
+              composition. By identifying similarities and differences in
+              spectral characteristics, this aids in the creative process and in
+              ensuring the uniqueness of each piece.
             </DialogDescription>
           </DialogHeader>
 

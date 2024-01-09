@@ -18,6 +18,8 @@ import { ValuationAssessment } from '@/components/analytics/valuation-assessment
 
 import { SocialSentiment } from '@/components/analytics/social-sentiment';
 import { PredictiveModelling } from '@/components/analytics/predictive-modelling';
+import { SpectralAnalysis } from '@/components/analytics/spectral-analysis';
+import { FileMusicIcon } from 'lucide-react';
 
 const data = [
   { date: '2023-01-01', trackValuation: 500000, marketMedian: 700000 },
@@ -100,70 +102,27 @@ const specData = [
   },
 ];
 
-const SpectralWaveform = () => {
-  return (
-    <Card style={{ width: 500, height: 300 }}>
-      <h1 className="text-lg font-bold">Spectral waveform</h1>
-      <ResponsiveContainer>
-        <LineChart
-          data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="frequency" />
-          <YAxis />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="dynamicRange"
-            stroke="#8884d8"
-            fillOpacity={0.3}
-            fill="#8884d8"
-          />
-          <Area
-            type="monotone"
-            dataKey="transientDetail"
-            stroke="#ffa500"
-            fillOpacity={0.3}
-            fill="#ffa500"
-          />
-          <Area
-            type="monotone"
-            dataKey="harmonicContent"
-            stroke="#800080"
-            fillOpacity={0.3}
-            fill="#800080"
-          />
-          <Line type="monotone" dataKey="trackIntensity" stroke="#0000FF" />
-          <Line
-            type="monotone"
-            dataKey="genreBenchmark"
-            stroke="#008000"
-            strokeDasharray="5 5"
-          />
-          <Line
-            type="monotone"
-            dataKey="marketMedian"
-            stroke="#FF0000"
-            strokeDasharray="3 3"
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </Card>
-  );
-};
-
 export default function Page() {
   return (
-    <div className="flex flex-col px-8 py-4 gap-4">
-      <div className="flex flex-wrap grow  gap-4">
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2 px-8 py-4 border-b">
+        <FileMusicIcon className="h-5 w-5 text-muted-foreground/20 group-hover:text-[#adfa1d]/80 transition-colors duration-300 ease-out" />
+
+        <span>Track Analytics</span>
+      </div>
+
+      <div className="flex flex-wrap grow px-6 gap-4">
         <OriginalityScore />
         <SimilarityScore />
         <ValuationAssessment />
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex px-6 gap-4">
+        <SpectralAnalysis />
         <PredictiveModelling />
+      </div>
+
+      <div className="flex px-6 gap-4">
         <SocialSentiment />
       </div>
     </div>

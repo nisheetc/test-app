@@ -12,9 +12,14 @@ import { Bell } from 'lucide-react';
 export function NotificationsPopover() {
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger className="relative" asChild>
         <Button variant="outline" size="icon">
           <Bell className="h-[1.2rem] w-[1.2rem]" />
+
+          <div className="absolute -top-1 -right-1 z-50 flex h-3 w-3 items-center justify-center">
+            <div className="h-full w-full animate-ping rounded-full bg-green-800 opacity-60"></div>
+            <div className="z-60 absolute top-0 right-0 h-full w-full rounded-full bg-green-900 opacity-80"></div>
+          </div>
         </Button>
       </PopoverTrigger>
       <PopoverContent>
