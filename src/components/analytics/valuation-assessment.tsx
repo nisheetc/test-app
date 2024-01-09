@@ -133,7 +133,7 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#7103ec]"></div>
-            Your Track:{' '}
+            Track:{' '}
             <span className="font-bold">
               ${trackValuation?.value ? trackValuation.value : 0}k
             </span>
@@ -141,7 +141,7 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
 
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#adfa1d]"></div>
-            Market Median:{' '}
+            Market:{' '}
             <span className="font-bold">
               ${marketMedian?.value ? marketMedian.value : 0}k
             </span>
@@ -193,17 +193,17 @@ export function ValuationAssessment() {
     const _data = createValuationData(
       '2023-01-01',
       '2024-01-01',
-      30,
+      20,
       isTrending
     );
-    console.log('data', _data);
+
     setValuationData(_data);
   }, []);
 
   return (
     <Card
       spotlight
-      style={{ width: 500, height: 250 }}
+      style={{ width: 450, height: 250 }}
       className="relative flex flex-col gap-2 rounded-xl px-4 pt-4 pb-4"
     >
       <h1 className="text-lg font-medium text-foreground">Valuation</h1>
@@ -269,7 +269,7 @@ export function ValuationAssessment() {
             type="monotone"
             dataKey="trackValuation"
             stroke="#7103ec"
-            name="Your Track"
+            name="Track"
             fillOpacity={0.95}
             fill="transparent"
             strokeWidth={4}

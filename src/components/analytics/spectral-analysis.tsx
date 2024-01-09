@@ -85,13 +85,12 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#7103ec]"></div>
-            Your Track: <span className="font-bold">{yourTrack?.value}%</span>
+            Track: <span className="font-bold">{yourTrack?.value}%</span>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#adfa1d]"></div>
-            Market Median:{' '}
-            <span className="font-bold">{marketMedian?.value}% </span>
+            Market: <span className="font-bold">{marketMedian?.value}% </span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -186,7 +185,7 @@ export function SpectralAnalysis() {
             }}
             content={<CustomLegend />}
           />
-          <Area
+          {/* <Area
             type="monotone"
             dataKey="beatConsistency"
             stroke="currentColor"
@@ -194,12 +193,12 @@ export function SpectralAnalysis() {
             fillOpacity={0.95}
             fill="transparent"
             strokeDasharray="10 6"
-          />
+          /> */}
           <Area
             type="monotone"
             dataKey="yourTrack"
             stroke="#7103ec"
-            name="Your Track"
+            name="Track"
             fillOpacity={0.95}
             fill="transparent"
             strokeWidth={4}
