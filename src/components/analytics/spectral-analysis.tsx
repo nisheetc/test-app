@@ -140,7 +140,7 @@ export function SpectralAnalysis() {
 
   useEffect(() => {
     const computedData = computeMarketMedian();
-    console.log('computedData', computedData);
+    // console.log('computedData', computedData);
     setMarketData(computedData);
   }, []);
 

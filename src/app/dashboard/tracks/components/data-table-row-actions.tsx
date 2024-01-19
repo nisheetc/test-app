@@ -31,11 +31,12 @@ export function DataTableRowActions<TData>({
   const redirect = () => {
     const title = row.getValue('title');
     const isHit = (row.original as { hit?: boolean }).hit ?? false;
+    const isrcCode = (row.original as { isrcCode?: boolean }).isrcCode;
 
     if (isHit) {
-      router.push(`/dashboard/tracks/${title}?hit=true`);
+      router.push(`/dashboard/tracks/${title}?isrc=${isrcCode}&hit=true`);
     } else {
-      router.push(`/dashboard/tracks/${title}`);
+      router.push(`/dashboard/tracks/${title}?isrc=${isrcCode}`);
     }
   };
 
