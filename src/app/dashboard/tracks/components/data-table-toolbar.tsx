@@ -11,8 +11,8 @@ import { DataTableViewOptions } from './data-table-view-options';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { genres } from '@/config/data';
 
-import { MessageCircleMore } from 'lucide-react';
 import { AudioTrackManager } from '@/components/audio-track-manager';
+import { DaveChat } from '@/components/dave-chat';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -71,10 +71,7 @@ export function DataTableToolbar<TData>({
       <div className="flex items-center gap-2">
         <DataTableViewOptions table={table} />
 
-        <Button variant="outline" className="flex items-center gap-2">
-          <MessageCircleMore className="h-5 w-5" />
-          <span>Chat with DAVE</span>
-        </Button>
+        <DaveChat />
 
         <AudioTrackManager />
       </div>

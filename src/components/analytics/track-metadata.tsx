@@ -35,17 +35,19 @@ export function TrackMetadata({ track }: TrackMetadataProps) {
 
             <div className="flex flex-col justify-between">
               <span className="text-xs text-muted-foreground">Key</span>
-              <span className="text-sm font-medium">{track?.key}</span>
+              <span className="text-sm font-medium">{track?.key ?? '-'}</span>
             </div>
 
             <div className="flex flex-col justify-between">
               <span className="text-xs text-muted-foreground">BPM</span>
-              <span className="text-sm font-medium">{track?.bpm}</span>
+              <span className="text-sm font-medium">{track?.bpm ?? '-'}</span>
             </div>
 
             <div className="flex flex-col justify-between">
               <span className="text-xs text-muted-foreground">ISRC Code</span>
-              <span className="text-sm font-medium">{track?.isrcCode}</span>
+              <span className="text-sm font-medium">
+                {track?.isrcCode ?? '-'}
+              </span>
             </div>
           </div>
         </div>
