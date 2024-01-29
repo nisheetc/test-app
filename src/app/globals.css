@@ -122,6 +122,24 @@
   }
 }
 
+@layer utilities {
+  .visible-scrollbar::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  .visible-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+    border-radius: 100vh;
+    border: 0.1px solid rgba(0, 0, 0, 0.2);
+    border-color: transparent;
+  }
+
+  .visible-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted));
+  }
+}
+
 #phrases {
   animation: slide-phrases-upward 20s;
 }

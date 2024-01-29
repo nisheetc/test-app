@@ -12,7 +12,7 @@ import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { genres } from '@/config/data';
 
 import { AudioTrackManager } from '@/components/audio-track-manager';
-import { DaveChat } from '@/components/dave-chat';
+import Chat from '@/components/chat/chat';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -71,7 +71,7 @@ export function DataTableToolbar<TData>({
       <div className="flex items-center gap-2">
         <DataTableViewOptions table={table} />
 
-        <DaveChat />
+        <Chat />
 
         <AudioTrackManager />
       </div>

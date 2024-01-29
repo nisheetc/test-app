@@ -1,9 +1,7 @@
 import Image from 'next/image';
 
 import { Card } from '@/components/Card';
-
-import { Track } from '@/config/schema';
-import { Fragment } from 'react';
+import { Track } from '@/lib/validations/track';
 
 interface TrackMetadataProps {
   track: Track | null;

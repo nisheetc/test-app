@@ -15,12 +15,12 @@ import { FileMusicIcon } from 'lucide-react';
 import { TrackMetadata } from '@/components/analytics/track-metadata';
 
 import tracksData from '@/config/tracks.json';
-import { Track } from '@/config/schema';
+import { Track } from '@/lib/validations/track';
+import Chat from '@/components/chat/chat';
 
 const fetchTrackData = async (isrcCode: string) => {
   const response = await fetch('/src/config/tracks.json');
   const tracks = await response.json();
-  console.log('tracks', tracks);
   return tracks.find((track: Track) => track.isrcCode === isrcCode);
 };
 
@@ -42,18 +42,22 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-4 px-8 py-4 border-b">
-        <div className="flex items-center gap-2">
-          <FileMusicIcon className="h-5 w-5 text-muted-foreground/20 group-hover:text-[#adfa1d]/80 transition-colors duration-300 ease-out" />
-          <span className="truncate">Track Analytics</span>
-        </div>
-        -{' '}
-        <div className="flex items-center gap-1">
-          <span className="truncate text-ellipsis">{track?.title}</span>
+      <div className="flex justify-between gap-4 px-8 py-4 border-b">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <FileMusicIcon className="h-5 w-5 text-muted-foreground/20 group-hover:text-[#adfa1d]/80 transition-colors duration-300 ease-out" />
+            <span className="truncate">Track Analytics</span>
+          </div>
+          -{' '}
           <div className="flex items-center gap-1">
-            (<span className="italic">{track?.artist}</span>)
+            <span className="truncate text-ellipsis">{track?.title}</span>
+            <div className="flex items-center gap-1">
+              (<span className="italic">{track?.artist}</span>)
+            </div>
           </div>
         </div>
+
+        <Chat />
       </div>
 
       <div className="flex flex-wrap grow px-6 gap-4 pb-6">
