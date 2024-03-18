@@ -5,10 +5,10 @@ export const parse = (req: NextRequest) => {
   domain = domain.replace('www.', ''); // remove www. from domain
   if (domain === 'demo.localhost:3000' || domain.endsWith('.vercel.app')) {
     // for local development and preview URLs
-    domain = 'createbase.ai';
+    domain = 'ipsum.ai';
   }
 
-  // path is the path of the URL (e.g. createbase.ai/stats/github -> /stats/github)
+  // path is the path of the URL (e.g. Ipsum.ai/stats/github -> /stats/github)
   let path = req.nextUrl.pathname;
 
   // fullPath is the full URL path (along with search params)
@@ -18,8 +18,8 @@ export const parse = (req: NextRequest) => {
   }`;
 
   // Here, we are using decodeURIComponent to handle foreign languages like Hebrew
-  const key = decodeURIComponent(path.split('/')[1]); // key is the first part of the path (e.g. createbase.ai/stats/github -> stats)
-  const fullKey = decodeURIComponent(path.slice(1)); // fullKey is the full path without the first slash (to account for multi-level subpaths, e.g. createbase.ai/github/repo -> github/repo)
+  const key = decodeURIComponent(path.split('/')[1]); // key is the first part of the path (e.g. Ipsum.ai/stats/github -> stats)
+  const fullKey = decodeURIComponent(path.slice(1)); // fullKey is the full path without the first slash (to account for multi-level subpaths, e.g. Ipsum.ai/github/repo -> github/repo)
 
   return { domain, path, fullPath, key, fullKey };
 };
